@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "deploy function": "sell4bids-4affe",
+    "default": "sell4bids-4affe"
+  }
+}

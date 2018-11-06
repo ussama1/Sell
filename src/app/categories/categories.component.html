@@ -1,0 +1,95 @@
+<!-- <div *ngIf="showSpinner" class="app-preloader" >
+    <app-loading-spinner ></app-loading-spinner>
+</div> -->
+<div id="content-block" style="min-height: 600px; margin-top:0; margin-bottom:40px">
+
+  <div class="s_keywords" style="margin-bottom:8px;"></div>
+
+  <div class="container-fluid custom-container sh-cstm-pd-mob">
+    <!--<button class="w3-button w3-teal w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>-->
+    <!--<ol class="breadcrumb">-->
+      <!--<li class="breadcrumb-item">-->
+        <!--<a routerLink='/'>-->
+          <!--<i class="fa fa-home"></i> Home</a>-->
+      <!--</li>-->
+      <!--<li class="breadcrumb-item active">Products-->
+      <!--</li>-->
+      <!--<li class="breadcrumb-item active">Category-->
+      <!--</li>-->
+      <!--<li class="breadcrumb-item active">{{cats}}-->
+      <!--</li>-->
+    <!--</ol>-->
+    <div class="row sh-margin-0">
+      <!--sidebar-->
+      <!--<div class="col-lg-2 col-md-3 col-sm-4  left-feild pd-0-1024">-->
+        <!--<app-sidebar></app-sidebar>-->
+      <!--</div>-->
+      <!--endsidebar-->
+
+      <div class="col-sm-12 pd-0-1024">
+        <div id="masonry">
+          <!-- <ng-container *ngFor="let acess of record;let ind=index" class=" animated wow zoomIn"> -->
+          <div *ngFor="let acess of record;let ind=index">
+            <div *ngIf="acess.title" class=" prod_item" (click)=singleproduct(acess.title,acess,acess.category,acess.auctionType,acess.state,acess.$key,acess.uid)>
+              <div class="overlay-img"></div>
+              <img *ngIf="acess.image0" src="{{acess.image0}}" alt="Images" />
+              <img *ngIf="!acess.image0" src="../../assets/img/Placeholder(Background)512.png" alt="Images" />
+              <a class="be-post-title" style="font-weight:bolder;">
+                {{acess.title}}</a>
+              <div class="sh-bid-buy-btns ">
+                <button *ngIf="acess.auctionType=='buy-it-now' && acess.category =='Jobs'" class="btn btn-next">Apply Now</button>
+                <button *ngIf="acess.quantity >= 1 && (acess.auctionType=='buy-it-now' && acess.category != 'Jobs')" class="btn btn-next">Buy at ${{acess.startPrice}}</button>
+                <button *ngIf="acess.auctionType=='reserve' || acess.auctionType=='non-reserve'" class="btn btn-alert" style="background:#000 !important">Bid at ${{acess.startPrice}}</button>
+                <button *ngIf="acess.quantity == 0 && (acess.auctionType=='buy-it-now' && acess.category != 'Jobs')" class="btn btn-previous">Sold </button>
+              </div>
+            </div>
+          </div>
+          <!-- </ng-container> -->
+          <div class="clearfix"></div>
+          <div *ngIf="!finished">
+            <!-- Loading more movies... -->
+          </div>
+          <div *ngIf="finished">
+            <!-- End of database... That's all folks! -->
+          </div>
+        </div>
+          <!--<div *ngIf="!showSpinner" class="text-center loadmore-holder">-->
+            <!--<button class="btn btn-next load-more load-more-btn" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000"-->
+                    <!--(click)="onScroll()">-->
+              <!--<i style="margin-right: 0px !important;" class="fa fa-plus"></i>-->
+            <!--</button>-->
+            <!--<br> SHOW MORE-->
+          <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Download the free Sell4Bids app</h4>
+      </div>
+      <div class="modal-body text-center">
+        <a href="https://play.google.com/store/apps/details?id=com.usman.brainplow.sell4bids&hl=en" target="_blank">
+          <img style="height:50px;margin:10px 0px 0px 10px" src="assets/img/googleplayx233.png">
+        </a>
+        <a href="https://itunes.apple.com/us/app/sell4bids/id1304176306?mt=8" target="_blank">
+          <img style="height:50px;margin:10px 0px 0px 10px" src="assets/img/appstorex233.png">
+        </a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

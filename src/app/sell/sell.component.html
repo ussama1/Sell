@@ -1,0 +1,488 @@
+<!--Haeder-->
+<!--end-->
+<div *ngIf="showSpinner" class="app-preloader" >
+    <app-loading-spinner ></app-loading-spinner>
+</div>
+<div id="content-block" style="text-align:center;margin-top:40px; margin-bottom:0px;">
+    <div class="top-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-10 col-md-8 col-lg-12 form-box">
+            <div class="jumbotron">
+              <form role="form" (ngSubmit)="onSubmit(sell)" #sell="ngForm"  class="f1" id="sell-form">
+                <h2 style="font-weight:bold">Describe Your Item</h2>
+                <div class="f1-steps">
+                  <div class="f1-progress">
+                    <div class="f1-progress-line" data-now-value="12.66" data-number-of-steps="4" style="width: 12.66%;"></div>
+                  </div>
+                  <div class="f1-step active">
+                    <div class="f1-step-icon">1</div>
+                    <p>Photo</p>
+                  </div>
+                  <div class="f1-step">
+                    <div class="f1-step-icon">2</div>
+                    <p>Details</p>
+                  </div>
+                  <div class="f1-step">
+                    <div class="f1-step-icon">3</div>
+                    <p>Price</p>
+                  </div>
+                  <div class="f1-step">
+                    <div class="f1-step-icon">4</div>
+                    <p>Finish</p>
+                  </div>
+                </div>
+                <fieldset>
+                  <br />
+                  <div *ngIf="showHide">                    
+                  <div class="form-group ">
+                    <div id="upload-file-container">
+                      <label style="font-size: 22px;">Add Images <img  accept=".jpg, .jpeg, .png" alt="Add Image" class="camera-img" src="../../assets/img/addimage_512.png">
+                        
+                      <!-- <input type="file" #fileImportInput  id="txtFileUpload"  name="fileImportInput[]" name="image" (change)="detectFiles($event);selectFile($event)" class="f1-first-name form-control" multiple="multiple" /> -->
+                      <input type="file" #fileImportInput  id="txtFileUpload"  name="fileImportInput[]" name="image" (change)="detectFiles($event)" class="f1-first-name form-control" multiple />
+                      
+                      
+                      </label>
+                    </div>
+                  </div>
+                  <div id="selectedFiles" style="line-height:0px"></div>
+                  <div class="clearfix"></div>
+                  <div _ngcontent-c7="">
+                  <!-- <label _ngcontent-c7="" class="upload-image left add-img">
+                      Add Images
+                      <input _ngcontent-c7="" accept=".jpg, .jpeg, .png" class="file" data-preview-file-type="text" id="file1" multiple="" name="file" ng-files="getTheFiles($files)" type="file">
+                      <img _ngcontent-c7="" accept=".jpg, .jpeg, .png" alt="Add Image" class="camera-img" src="../../assets/img/addimage_512.png">
+                      
+                    </label> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="title" class="label-sell">Title</label>
+
+                    <input type="text" [(ngModel)]="model.title" #title="ngModel"  name="title" placeholder="What are you selling?" class="f1-last-name form-control" id="title" #title1 required >
+                    <span class="help-block"  *ngIf="title.touched && title.errors">
+                      <span style="color: red" *ngIf="title.errors.required">*Title is required</span>
+
+                    </span>
+                  </div>
+                  </div>
+                  <div *ngIf="!showHide">
+                    <div class="form-group">
+                      <br>
+                      <label for="job-title" class="label-sell">Job Title</label>
+                      <input type="text"  [(ngModel)]="model.jobtitle" #jobtitle ="ngModel" name="jobtitle" placeholder="Title of Job" class="f1-last-name form-control" id="job-title" required>
+                      <span class="help-block"  *ngIf="jobtitle.touched && jobtitle.errors">
+                        <span style="color: red" *ngIf="jobtitle.errors.required">*Job Title is required</span>
+                      </span>
+                    </div>
+                    <div class="form-group">
+                      <label for="employment" class="label-sell">Employment Type</label>
+                      <br>
+                      <select  [(ngModel)]="model.employment" #employment ="ngModel" name="employment" class="f1-last-name form-control" id="employment" required>
+                        <option disabled >Select Employment Type</option>
+                        <option value="contractHire">Contract Hire</option>
+                        <option value="employeeChoice">Employee's Choice</option>
+                        <option value="fullTime">Full-Time</option>
+                        <option value="internship">Internship</option>
+                        <option value="temporary">Temporary</option>
+                      </select>
+                      <span class="help-block"  *ngIf="employment.touched && employment.errors">
+                        <span style="color: red" *ngIf="employment.errors.required">*Employment is required</span>
+                      </span>
+                    </div>
+                    <div class="form-group">
+                      <label class="label-sell">Benefits</label>
+                      <br>
+                      <label class="label-check">
+                        <input type="checkbox"  [(ngModel)]="model.medical" #medical ="ngModel" class="option-input checkbox" value="medical" name="medical" > Medical</label>
+                      <label class="label-check"><input type="checkbox"  [(ngModel)]="model.pto" #pto ="ngModel" class="option-input checkbox" value="pto" name="pto" > PTO</label>
+                      <label class="label-check"><input type="checkbox"  [(ngModel)]="model.k" #k ="ngModel" class="option-input check2box" value="401(k)" name="k" > 401(k)</label>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="form-group trigger">
+                  <label class="switch label-sell">
+                    <input type="checkbox" (change)="changeShowStatus()">
+                    <span class="slider round"></span>
+                  </label>Listing a Job?
+                  </div>
+                  <div class="f1-buttons">
+                  <button type="button" class="btn btn-next" style="font-weight: bold;
+                  font-size: 22px;" (click)="nextStep1();">Next</button>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <br />
+                  <div *ngIf="showProCat">
+                    <div class="form-group">
+                      <label for="category" class="label-sell">Category</label>
+                      <br>
+                      <select [(ngModel)]="model.category" #category="ngModel" name="category" class="f1-last-name form-control" id="category">
+                        <option disabled>-----Select Category-----</option>
+                        <option *ngFor="let category of cat"><span *ngIf="category != Jobs || category != undefined">{{category}}</span> </option>
+
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="description" class="label-sell">Description</label>
+                      <textarea [(ngModel)]="model.description" #description="ngModel" name="description" class="f1-last-name form-control" id="description" placeholder="Detail Description of your Item" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label class="label-sell">Condition
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.condition" #condition="ngModel" type="radio" class="option-input radio" value="other" name="condition" />
+                        Other (See Description)
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.condition" #condition="ngModel" type="radio" class="option-input radio" value="forParts" name="condition" />
+                        For Parts
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.condition" #condition="ngModel" type="radio" class="option-input radio" value="used" name="condition" />
+                        Used
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.condition" #condition="ngModel" type="radio" class="option-input radio" value="reconditioned" name="condition" />
+                        Reconditioned
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.condition" #condition="ngModel" type="radio" class="option-input radio" value="openBox" name="condition" />
+                        Open Box / Like New
+                      </label>
+                      <br>
+                      <label>
+                        <input  [(ngModel)]="model.condition" #condition="ngModel" type="radio" class="option-input radio" value="new" name="condition" />
+                        New
+                      </label>
+                    </div>
+
+                  </div>
+                  <div *ngIf="showJobCat">
+                    <div class="form-group">
+                      <label for="job-category" class="label-sell">Category</label>
+                      <br>
+                      <select  [(ngModel)]="model.jobcategory" #jobcategory ="ngModel" name="jobcategory" class="f1-last-name form-control" id="jobcategory">
+                        <option disabled>Select Job Category</option>
+                        <option >Accounting and Finance</option>
+                        <option >Admin</option>
+                        <option >Automotive</option>
+                        <option >Business</option>
+                        <option >Construction</option>
+                        <option >Creative</option>
+                        <option >Customer Services</option>
+                        <option >Education</option>
+                        <option >Engineering</option>
+                        <option >Food and Restaurants</option>
+                        <option >Healthcare</option>
+                        <option >Hotel and Hospitality</option>
+                        <option >Human Resources</option>
+                        <option >Labor</option>
+                        <option >Manufacturing</option>
+                        <option >Marketing</option>
+                        <option >Personal Care</option>
+                        <option >Real Estate</option>
+                        <option >Retail and Wholesale</option>
+                        <option >Sales</option>
+                        <option >Salon, Spa and Fitness</option>
+                        <option >Security</option>
+                        <option >Skilled Trade and Craft</option>
+                        <option >Technical Support</option>
+                        <option >TV, Film and Video</option>
+                        <option >Web and Info Design</option>
+                        <option >Writing and Editing</option>
+                        <option >Maintenance and Installation</option>
+                        <option >Office</option>
+                        <option >Other</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="job-description" class="label-sell">Description</label>
+                      <br>
+                      <textarea  [(ngModel)]="model.jobdescription" #jobdescription ="ngModel" name="jobdescription" class="f1-last-name form-control" id="job-description" placeholder="Detail Description of Job" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label class="label-sell">Toughness
+                      </label>
+                      <br>
+                      <label>
+                        <input  [(ngModel)]="model.toughness" #toughness ="ngModel" type="radio" class="option-input radio" value="other" name="toughness" />
+                        Other (See Description)
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.toughness" #toughness ="ngModel" type="radio" class="option-input radio" value="easy" name="toughness" />
+                        Easy
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.toughness" #toughness ="ngModel" type="radio" class="option-input radio" value="average" name="toughness" />
+                        Average
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.toughness" #toughness ="ngModel" type="radio" class="option-input radio" value="aboveAverage" name="toughness" />
+                        Above Average
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.toughness" #toughness ="ngModel" type="radio" class="option-input radio" value="high" name="toughness" />
+                        High
+                      </label>
+                      <br>
+                      <label>
+                        <input [(ngModel)]="model.toughness" #toughness ="ngModel" type="radio" class="option-input radio" value="extreme" name="toughness" />
+                        Extreme
+                      </label>
+                    </div>
+                  </div>
+                  <div class="f1-buttons">
+                    <button type="button" class="btn btn-previous">Previous</button>
+                    <button type="button" class="btn btn-next" (click)="nextStep2();">Next</button>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <br>
+                  <div *ngIf="showProPrice">
+                    <div class="col-sm-8 col-md-8 col-lg-12">
+                      <div class="form-group">
+                        <button type="button"  [ngStyle]="{'background-color':showBuynow ? '#bd081c' : '#bbb' }" class="btn btn-lg btn-primary btn-huge" (click)="buynow();">Buy Now</button>
+                        <button type="button"  [ngStyle]="{'background-color':!showBuynow ? '#bd081c' : '#bbb' }" class="btn btn-lg btn-primary btn-huge" (click)="buynow();">Auction</button>
+                      </div>
+                    </div>
+                    <br />
+                    <div *ngIf="showBuynow">
+                        <input [(ngModel)]="model.buy" #buy="ngModel" name="buy"  value="buy-it-now" id="buy" style="display:none" >
+                        <div class="form-group">
+                        <br>
+                        <label for="price" class="label-sell">Price</label>
+                        <div class='field'><div style="position:relative"><div style="position:absolute; left:2px; top:3px">$</div></div>
+                        <input type="number" [(ngModel)]="model.price" #price="ngModel" name="price" class="f1-last-name form-control" id="price">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="quantity" class="label-sell">Quantity in Stock</label>
+                        <input type="number" [(ngModel)]="model.quantity" #quantity="ngModel" name="quantity" placeholder="Quantity" class="f1-last-name form-control" id="quantity">
+                      </div>
+                      <div class="form-group">
+                        <label>
+                          <input [(ngModel)]="model.list" #list="ngModel" name="list" value="-1" type="checkbox" class="option-input checkbox" (click)="hideList();" />
+                          List Indefinitely
+                        </label>
+                      </div>
+                      <div *ngIf="!hideShowList">
+                        <div class="form-group">
+                          <label for="listing" class="label-sell">Listing Duration </label>
+                          <select [(ngModel)]="model.listingTime" #listingTime="ngModel" name="listingTime" class="f1-last-name form-control" id="listingTime">
+                            <option value="259200000">3 Days</option>
+                            <option value="432000000">5 Days</option>
+                            <option value="604800000" >7 Days</option>
+                            <option value="1296000000">15 Days</option>
+                            <option value="1814400000">21 Days</option>
+                            <option value="2592000000">30 Days</option>
+                          </select>
+                        </div>
+                        <br />
+                      </div>
+                      <div class="form-group">
+                        <label>
+                          <input [(ngModel)]="model.offer" #offer="ngModel" name="offer" type="checkbox" class="option-input checkbox" />
+                          Accept Offers
+                        </label>
+                      </div>
+                    </div>
+                    <div *ngIf="!showBuynow">
+                        <div class="form-group">
+                          <br>
+                          <input [(ngModel)]="model.reserve" #reverse="ngModel" name="reserve"  value="reserve" id="reserve" style="display:none" >
+                          <label for="start-price" class="label-sell">Starting Price</label>
+                          <input type="number" [(ngModel)]="model.rsPrice" #rsPrice="ngModel" name="rsPrice"  placeholder="$" value="$"class="f1-last-name form-control" id="rsPrice">
+                        </div>
+                        <div class="form-group">
+                          <label>
+                            <input type="checkbox" class="option-input checkbox" (click)="reversePrice();" />
+                            Add Reserve Price
+                          </label>
+                        </div>
+                      <div *ngIf="!addReverse">
+                        <div class="form-group">
+                          <label for="reverce-price" class="label-sell">Add Reserve Price</label>
+                          <div class='field'><div style="position:relative"><div style="position:absolute; left:2px; top:3px">$</div></div>                          
+                          <input type="number" [(ngModel)]="model.reversePrice" #reversePrice="ngModel" name="revercePrice"  class="f1-last-name form-control" id="revercePrice">
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                        <div class="form-group">
+                          <label for="listing-reverse" class="label-sell">Listing Duration</label>
+                          <br>
+                          <select  [(ngModel)]="model.listingReverse" #listingReverse="ngModel"  name="listingReverse" class="f1-password form-control" id="listingReverse">
+                            <option value="259200000">3 Days</option>
+                            <option value="432000000">5 Days</option>
+                            <option value="604800000" >7 Days</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="showJobPrice">
+                      <div class="form-group">
+                        <br>
+                        <input [(ngModel)]="model.jobcat" #jobcat="ngModel" name="jobcat"  value="jobs" id="jobcat" style="display:none" >
+                        <input [(ngModel)]="model.jobtype" #jobtype="ngModel" name="jobtype"  value="buy-it-now" id="jobtype" style="display:none" >
+
+                        <label for="salary" class="label-sell">Salary</label>
+                        <div class='field'><div style="position:relative"><div style="position:absolute; left:2px; top:3px">$</div></div>                        
+                        <input type="number" [(ngModel)]="model.salary" #salary ="ngModel" name="salary" class="f1-last-name form-control" id="salary">
+                       </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="pay-period" class="label-sell">Pay Period</label>
+                        <br>
+                        <select [(ngModel)]="model.payperiod" #payperiod ="ngModel" name="payperiod" class="f1-last-name form-control" id="payperiod">
+                          <option value="daily">Daily</option>
+                          <option value="biweekly">Biweekly</option>
+                          <option value="weekly">Weekly</option>
+                          <option selected value="monthly">Monthly</option>
+                          <option value="project">Project Based</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>
+                          <input [(ngModel)]="model.jobindefinite" #jobindefinite ="ngModel" name="jobindefinite" type="checkbox" class="option-input checkbox" (click)="hideList();"/>
+                          List Indefinitely
+                        </label>
+                      </div>
+                      <div *ngIf="!hideShowList">
+                        <div class="form-group">
+                          <label for="job-listing" class="label-sell">Listing Duration</label>
+                          <br>
+                          <select [(ngModel)]="model.joblisting" #joblisting ="ngModel" name="joblisting" class="f1-last-name form-control" id="job-listing">
+                            <option value="259200000">3 Days</option>
+                            <option value="432000000">5 Days</option>
+                            <option selected value="604800000" >7 Days</option>
+                            <option value="1296000000">15 Days</option>
+                            <option value="1814400000">21 Days</option>
+                            <option value="2592000000">30 Days</option>
+                          </select>
+                        </div>
+                        <br />
+                      </div>
+                      <div class="form-group">
+                        <label>
+                          <input [(ngModel)]="model.joboffer" #joboffer ="ngModel" name="joboffer" type="checkbox" class="option-input checkbox" />
+                          Accept Offers
+                        </label>
+                      </div>
+                    </div>
+                  <br />
+                  <div class="f1-buttons">
+                    <button type="button" class="btn btn-previous">Previous</button>
+                    <button type="button" class="btn btn-next" (click) = nextStep3(); >Next</button>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <br />
+                <div *ngIf = "showProComplete">
+                   <!-- <label class="label-sell">Share On
+                    </label>
+                    <br />
+                    <div class="form-group">
+                      <label>
+                        <input type="checkbox" class="option-input checkbox" />
+                        Facebook
+                      </label>
+                    </div> -->
+                    <div class="form-group">
+                      <label for="city" class="label-sell">Zip Code</label>
+                      <input type="text"  (ngModelChange)="zipcodeCheck(zipcode1.value)" [(ngModel)]="location_Data.zip_code"
+                      #zipcode1 name="zipcode" min="1" max="5"   placeholder="Enter zip/postal code" class="f1-last-name form-control" id="location">
+                    </div>
+                    <input type="text"
+                    name="lat"   [(ngModel)]="location_Data.lat"
+                    value="{{location_Data.lat}}" id="lat" hidden>
+                    <input type="text"
+                    name="lng"   [(ngModel)]="location_Data.lng"
+                    value="{{location_Data.lng}}" id="lng" hidden>
+                    <div class="form-group">
+                      <label for="location" class="label-sell">City</label>
+                      <input type="text"
+                      name="city"   [(ngModel)]="location_Data.city"
+                      value="{{location_Data.city}}" class="f1-last-name form-control" id="city">
+                    </div>
+                    <div class="form-group">
+                      <label for="location" class="label-sell">State</label>
+                      <input type="text"   name="state" [(ngModel)]="location_Data.state"
+                      value="{{location_Data.state}}" class="f1-last-name form-control" id="state">
+                    </div>
+                    <!-- <div class="form-group">
+                      <label>
+                        <input type="checkbox" class="option-input checkbox" />
+                        Locate Me
+                      </label>
+                    </div> -->
+                  </div>
+                  <div *ngIf="showJobComplete">
+                    <div class="form-group">
+                      <br>
+                      <label for="company-info" class="label-sell">Company Information</label>
+                      <input  type="text" [(ngModel)]="model.companyname" #company_name ="ngModel" name="company_name" placeholder="Name of Company" class="f1-last-name form-control" id="company-info">
+                      <br>
+                      <textarea [(ngModel)]="model.company_description" #company_description ="ngModel" name="company_description" class="f1-password form-control" id="company_description" placeholder="Detail of Company" cols="30" rows="10"></textarea>
+                    </div>
+                    <!-- <label class="label-sell">Share On
+                    </label>
+                    <br />
+                    <div class="form-group">
+                      <label>
+                        <input type="checkbox" class="option-input checkbox" />
+                        Facebook
+                      </label>
+                    </div> -->
+                    <div class="form-group">
+                      <label for="city" class="label-sell">Zip Code</label>
+                      <input type="text"  (keyup)="zipcodeCheck(zipcode1.value)"  [(ngModel)]="location_Data.zip_code"
+                      #zipcode1 name="zipcode"  placeholder="Enter zip/postal code" class="f1-last-name form-control" id="location">
+                    </div>
+                      <input type="text"
+                      name="lat"   [(ngModel)]="location_Data.lat"
+                      value="{{location_Data.lat}}" id="lat" hidden>
+                      <input type="text"
+                      name="lng"   [(ngModel)]="location_Data.lng"
+                      value="{{location_Data.lng}}" id="lng" hidden>
+                      <div class="form-group">
+                        <label for="location" class="label-sell">City</label>
+                        <input type="text"
+                        name="city"   [(ngModel)]="location_Data.city"
+                        value="{{location_Data.city}}" class="f1-last-name form-control" id="city">
+                      </div>
+                      <div class="form-group">
+                        <label for="location" class="label-sell">State</label>
+                        <input type="text"   name="usstate" #usstate="ngModel" [(ngModel)]="location_Data.state"
+                        value="{{location_Data.state}}" class="f1-last-name form-control" id="usstate">
+                      </div>
+                    <!-- <div class="form-group">
+                      <label>
+                        <input type="checkbox" class="option-input checkbox" />
+                        Locate Me
+                      </label>
+                    </div> -->
+                  </div>
+                  <div style="margin-top:10px" class="f1-buttons">
+                    <button type="button" class="btn btn-previous">Previous</button>
+                    <button type="submit" class="btn btn-submit">Submit</button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--footer-->
+  <!--end-->

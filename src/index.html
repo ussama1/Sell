@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="msvalidate.01" content="57502C9301C999041BEF66827BC5123A" />
+  <title> Sell4Bids:  Sell and Buy Used Stuff </title>
+  <base href="/">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="icon" type="image/png" href="sell4bids1.png">
+  <link rel="shortcut icon" href="assets/img/Sell4Bids-Logo.png">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/style/animate.css">
+  <link rel="stylesheet" href="assets/style/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/style/stylesheet.css">
+  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style/form-elements.css">
+  <link rel="stylesheet" href="assets/style/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" type="text/css" href="assets/style/slick.css">
+  <link rel="stylesheet" type="text/css" href="assets/style/slick-theme.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+
+
+  <meta name="google-site-verification" content="EZjpSro9Zfx1mnvlJ_uCtNmhxEpq1UFWkK8U2ivISz8" />
+  <meta name="Description" content=" sell4bids brings online auction and bidding system like never before. Sell and Buy used stuff locally with Sell4bids. Find great deals and offer up sales.">
+
+
+  <meta name="Keywords" content="auction and bidding system, sell and buy used stuff, auctions, bids, bids on used stuff, bids on fashion, bids on electronics, list your jobs, listing your jobs, buy and sell online,  buy sell online,  buy it sell it, sell it online, local job listing, online fashion, designer clothing auctions, clothing auctions, bids on jobs, online auction, live auction, online bids on used stuff, buy used stuff, sell used stuff, sell and buy used stuff locally, auction and bidding, online auto auction, local auctions,Used items for sale">
+  <!-- CSS Files -->
+
+</head>
+<body>
+<!-- <div id="wrapper"> -->
+<app-root></app-root>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118004418-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118004418-1');
+</script>
+
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-118004418-1', 'auto');// add your tracking ID here.
+</script>
+<!-- </div> -->
+<script src="assets/script/jquery-2.1.4.min.js"></script>
+<script src="assets/script/bootstrap.min.js"></script>
+<script src="assets/script/scripts.js"></script>
+<script src="assets/script/jquery.backstretch.min.js"></script>
+<script src="assets/script/jquery-validation.js"></script>
+<script type="text/javascript" src="assets/script/slick.js"></script>
+
+<!-- <script src="assets/script/wow.js"></script> -->
+<script>
+  // You have the whole queryString ready for you here in a key->value form.
+  // In the edge case where there are multiple values, the value is an array.
+  var qs = AppRedirect.queryString;
+  // Here we initiate the redirect process
+  AppRedirect.redirect({
+    iosApp: 'sell4bids://post?message=' + qs['message'],
+    iosAppStore: 'https://itunes.apple.com/us/app/sell4bids/id1304176306?mt=8&message=' + qs['message'],
+    // For this, your app need to have category filter: android.intent.category.BROWSABLE
+    android: {
+      'host': 'post/?message=' + encodeURIComponent(qs['message']), // Host/path/querystring part in a custom scheme URL
+      // 'action': '', // Equivalent to ACTION in INTENTs
+      // 'category': '', // Equivalent to CATEGORY in INTENTs
+      // 'component': '', // Equivalent to COMPONENT in INTENTs
+      'scheme': 'sell4bids', // Scheme part in a custom scheme URL
+      'package': 'com.usman.brainplow.sell4bids', // Package name in Play store
+      'fallback': 'https://play.google.com/store/apps/details?id=com.usman.brainplow.sell4bids&hl=en&message=' + qs['message']
+    }
+  });
+</script>
+
+<script>
+  new WOW().init();
+  var config = {
+    apiKey: "AIzaSyCLteIvu7xNKiquCChdljQCh3xrWmrcfjg",
+    authDomain: "sell4bids-4affe.firebaseapp.com",
+    databaseURL: "https://sell4bids-4affe.firebaseio.com",
+    projectId: "sell4bids-4affe",
+    storageBucket: "sell4bids-4affe.appspot.com",
+    messagingSenderId: "795664390984"
+  };
+  firebase.initializeApp(config);
+
+  function topFunction() {
+    $('html, body').animate({scrollTop: 0}, 800);
+  }
+  function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+</script>
+
+
+
+</body>
+</html>

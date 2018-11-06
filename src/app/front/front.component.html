@@ -1,0 +1,130 @@
+<!-- <div *ngIf="showSpinner" class="app-preloader" >
+    <app-loading-spinner ></app-loading-spinner>
+</div> -->
+<div id="carousel-example-generic" class="carousel slide margin-top-55" data-ride="carousel">
+  <ngx-slick class="container cat-slider-homepage" #slickModal="slick-modal" [config]="slideConfig"id="cat-sliderr">
+    <div ngxSlickItem *ngFor="let item of array_categories" (click)="getcategory(item)" class="categories-slider-wrapper">
+      <img src="assets/img/cat-icons/{{item}}.png" title="{{item}}">
+      <span title="{{item}}">{{item}}</span>
+    </div>
+  </ngx-slick>
+</div>
+
+
+<div class="clearfix"></div>
+
+<!-- search box -->
+
+
+
+<!-- search box end -->
+
+<div class="clearfix"></div>
+<div class="item-video hidden-xs hidden-sm">
+  <div class="item-video-inner">
+    <div class="head-bg slider-above-video" style="margin-bottom:0;padding:0;">
+    </div>
+  </div>
+</div>
+
+
+  <div id="content-block">
+    <!-- <select [(ngModel)]="userState" name="userState" (change)="getState()">
+      <option *ngFor="let state of dict_state" >{{state}}</option>
+    </select> -->
+    <div class="container-fluid custom-container">
+      <div id="masonry" class="delay">
+        <!-- <ng-container *ngFor="let acess of record;let ind=index" class=" animated wow zoomIn"> -->
+        <div *ngFor="let acess of record;let ind=index">
+          <div *ngIf="acess.title" class=" prod_item" (click)=singleproduct(acess.title,acess,acess.category,acess.auctionType,acess.state,acess.$key,acess.uid)>
+            <div class="overlay-img"></div>
+            <img *ngIf="acess.image0_small" src="{{acess.image0_small}}" alt="Images" />
+            <img *ngIf="acess.image0 && !acess.image0_small" src="{{acess.image0}}" alt="Images" />
+            <img *ngIf="!acess.image0 && !acess.image0_small" src="../../assets/img/Placeholder(Background)512.png" alt="Images" />
+
+
+            <a class="be-post-title" style="font-weight:bolder;">
+              {{acess.title}}</a>
+            <div class="sh-bid-buy-btns ">
+              <button *ngIf="acess.auctionType=='buy-it-now' && acess.category =='Jobs'" class="btn btn-next">Apply Now</button>
+              <button *ngIf="acess.quantity >= 1 && (acess.auctionType=='buy-it-now' && acess.category != 'Jobs')" class="btn btn-next">Buy at ${{acess.startPrice}}</button>
+              <button *ngIf="acess.auctionType=='reserve' || acess.auctionType=='non-reserve'" class="btn btn-alert" style="background:#000 !important">Bid at ${{acess.startPrice}}</button>
+              <button *ngIf="acess.quantity == 0 && (acess.auctionType=='buy-it-now' && acess.category != 'Jobs')" class="btn btn-previous">Sold </button>
+            </div>
+          </div>
+        </div>
+        <!-- </ng-container> -->
+        <div class="clearfix"></div>
+        <div *ngIf="!finished">
+          <!-- Loading more movies... -->
+        </div>
+        <div *ngIf="finished">
+          <!-- End of database... That's all folks! -->
+        </div>
+      </div>
+      <div *ngIf="!showSpinner" class="text-center loadmore-holder">
+        <button class="btn btn-next load-more load-more-btn" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000"
+          (click)="onScroll()">
+          <i style="margin-right: 0 !important;" class="fa fa-plus"></i>
+        </button>
+        <br> SHOW MORE
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Download The Free Sell4Bids App</h4>
+          </div>
+          <div class="modal-body text-center">
+            <a href="https://play.google.com/store/apps/details?id=com.usman.brainplow.sell4bids&hl=en" target="_blank">
+              <img style="height:50px;margin:10px 0 0 10px" src="assets/img/googleplayx233.png">
+            </a>
+            <a href="https://itunes.apple.com/us/app/sell4bids/id1304176306?mt=8" target="_blank">
+              <img style="height:50px;margin:10px 0 0 10px" src="assets/img/appstorex233.png">
+            </a>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="play-store-icons-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3">
+        <img class="download-mob-image" src="../../assets/img/Splash.png" alt="google play store">
+      </div>
+
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="play-store-inner">
+          <h4>
+            <span>Download</span> and Experience Our Super Cool Next Generation Mobile Auction & Jobs/Services Mobile App Now.</h4>
+          <ul class="play-store-img">
+            <li>
+              <a href="https://itunes.apple.com/us/app/sell4bids/id1304176306?mt=8" target="_blank">
+                <img class="iosBadge" src="../../assets/img/apple-store.png" alt="IOS">
+              </a>
+            </li>
+            <li>
+              <a href="https://play.google.com/store/apps/details?id=com.usman.brainplow.sell4bids&hl=en" target="_blank">
+                <img class="androidBadge" src="../../assets/img/google-play.png" alt="google play store">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3">
+        <img class="download-mob-image pull-right" src="../../assets/img/Splash.png" alt="google play store">
+      </div>
+    </div>
+    <!--<a routerlink="/privacy-policy" href="/privacy-policy" class="btn subscribe-btn pull-left" (click)="subscriber()" >Privacy Policy</a>-->
+    <!--<a routerlink="/terms-and-conditions" href="/terms-and-conditions" class="btn subscribe-btn pull-right" (click)="subscriber()" >Terms & Conditions</a>-->
+  </div>
+</div>

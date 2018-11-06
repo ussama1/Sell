@@ -1,0 +1,82 @@
+
+
+
+
+
+
+
+<div class="">
+
+        <li class="dropdown dropdown-notifications" style="background:none;">
+          <a  style="color:#000 !important;" *ngIf="toast.unreadCount > 0; else other1" href="#notifications-panel" role="button" (click)="initialization()" class="dropdown-toggle" data-toggle="dropdown">          <!--Profile-->
+                  <i style="color:#000 !important;"data-bubble="5" class="fa fa-bell"></i>
+                          <span style="background-color:#e74c3c">{{unreadcount}}</span>
+                             <!--<i data-bubble="5" class="fa fa-bell notification-icon"></i>-->
+                                    <!--<li><a href="#">Profile</a></li>-->
+                                     </a>
+                                        <ng-template #other1>
+
+                                          <a href="#notifications-panel" role="button" (click)="initialization()" class="dropdown-toggle" data-toggle="dropdown">
+                                         <i data-bubble="5" class="fa fa-bell"></i>
+                                             </a>
+                                       </ng-template>
+
+          <div class="dropdown-container dropdown-position-bottomright ">
+
+            <div class="dropdown-toolbar">
+              <!--<div class="dropdown-toolbar-actions">-->
+                <!--<a href="#">Mark all as read</a>-->
+              <!--</div>-->
+              <!-- <h3 class="dropdown-toolbar-title" style="color:#000;">Notifications (2)</h3> -->
+              <h3 *ngIf="unreadcount > 0; else other" class="dropdown-toolbar-title" style="color:#000;">Unread Notifications ({{unreadcount}})</h3>            <ng-template #other>              <h3 class="dropdown-toolbar-title" style="color:#000">Unread Notifications (0)</h3>            </ng-template>
+            </div><!-- /dropdown-toolbar -->
+
+            <ul class="dropdown-menu navbar-right">
+              <ul class="notifications">
+                <div *ngFor="let notification of notifications | async | reverse">
+
+                  <!--<li *ngIf="notification.read; else notread" class="readclass">-->
+                  <li class="{{notification.read ? 'readclass' : 'notification'}}">
+                    <!--<div  class="readclass">-->
+                    <div class="media">
+                      <div class="media-left">
+                        <div class="media-object">
+                          <img src="{{notification.image}}"  (click) = singleuser(notification.name,notification.uid) class="img-circle" style="cursor:pointer;" alt="Name">
+                        </div>
+                      </div>
+
+                      <div class="media-body">
+                        <strong class="notification-title"><a  (click) = singleuser(notification.name,notification.uid) style="color:#e74c3c;cursor:pointer">{{notification.name}}</a> {{notification.content}} you</strong>
+                        <p class="notification-desc">Visit {{notification.name}} profile to see his/her products</p>
+
+                        <div class="notification-meta">
+                          <small class="timestamp">27. 11. 2015, 15:00</small>
+                        </div>
+                      </div>
+
+                      <div class="{{notification.read ? 'tickselected' : 'tick'}}" style="float:right;margin-top:-60px;">
+                        <!--<button class="delete" (click)="read(notification.$key)"></button>-->
+                        <i class="fa fa-check fa-lg" (click)="read(notification.$key)"></i>
+                      </div>
+                    </div>
+                    <!--</div>-->
+                  </li>
+
+                </div>
+
+
+
+              </ul>
+            </ul>
+
+            <div class="dropdown-footer text-center">
+              <!-- <a href="#">View All</a> -->
+            </div><!-- /dropdown-footer -->
+
+          </div><!-- /dropdown-container -->
+        </li><!-- /dropdown -->
+
+        <!--<li><a href="#">Dashboard</a></li>-->
+        <!--<li><a href="#">Projects</a></li>-->
+        <!--<li><a href="#">People</a></li>-->
+  </div>

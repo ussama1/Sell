@@ -1,0 +1,216 @@
+<div class="container-fluid chat-container">
+  <div id="frame">
+    <div id="sidepanel">
+      <div id="profile">
+        <div class="wrap">
+          <img id="profile-img" src="{{sender.image}}" alt="" onError="this.src='assets/img/Blank-Photo.jpg';" alt="" class="online" alt="" />
+          <p>{{sender.name}}</p>
+          <div id="status-options">
+            <ul>
+              <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
+              <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
+              <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
+              <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="search">
+        <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+        <input  type="text" [(ngModel)]="term"  placeholder="Search contacts..." />
+      </div>
+      <div id="contacts">
+        
+        <ul>
+
+          <ng-container *ngFor = "let user of mainChat | filter:term "  >
+          <li class="contact" [ngClass]="{'active' : otherUser == user.uid}"
+          (click)="singleUser(user.uid)" >
+            <div class="wrap">
+              <!-- <span class="contact-status online"></span> -->
+              <!-- <img src="{{user.image}}" alt="" /> -->
+              <div class="sent-name" style="font-size:22px">{{user.name | slice:0:2 }}</div>              
+              <div class="meta">
+                <p class="name">{{user.name}}</p>
+                <p style="font-size: 12px" class="presview name">{{user.lastMessage}}</p>
+              </div>
+              <h4 *ngIf="user.unreadCount < 1" style="font-size: 12px">{{user.lastMessageTime | timeAgo}}</h4>              
+              <h4 *ngIf="user.unreadCount >= 1" (click)="singleUser()" >{{user.unreadCount}} <i class="fa fa-envelope" aria-hidden="true"></i></h4>
+            </div>
+          </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+      <div *ngIf="otherUser" class="contact-profile">
+
+        <img src="{{reciever.image}}" alt="" onError="this.src='assets/img/Blank-Photo.jpg';" alt="" />
+        <p> <i *ngIf="status == 'Online'" class="fa fa-circle"></i> {{reciever.name}} <br>
+          {{this.status }}
+        </p>
+
+      </div>
+      <div class="messages" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        
+        <ul>
+          <ng-container  *ngFor="let item of oneChat">
+          <li class="sent" *ngIf="currentUser != item.senderUid">
+            <!--<img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />-->
+            <div>
+              <div class="sent-name"><span>{{reciever.name | slice:0:2 }}</span></div>
+              <p>{{item.message}}
+                <span style="text-transform:lowercase;">{{item.timestamp | timeAgo}}</span>
+              </p>
+
+            </div>
+
+          </li>
+          <li class="replies" *ngIf="currentUser == item.senderUid && otherUser">
+            <!--<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />-->
+            <div>
+              <div class="recv-name">
+              <span>Me</span>
+              </div>
+              <p>{{item.message}}
+                <span>{{item.timestamp | timeAgo}}</span></p>
+
+            </div>
+
+          </li>
+        </ng-container>
+
+        </ul>
+        <div class="message-input">
+          <form *ngIf="otherUser" class="send-form-style"  #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <div class="form-group wrap">
+              <input type="text" name="chat" [(ngModel)] = "chat"  autocomplete="nope" placeholder="Write your message..." required />
+              <!--<i class="fa fa-paperclip attachment" aria-hidden="true"></i>-->
+              <div class="form-group" style="display: inline">
+                <button class="submit" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--///////////////////////////////////////////// Old Code//////////////////////////////////////////////////////-->
+
+
+
+<!--<div class="container chat-container">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-4 chat-sidebar">-->
+        <!--<div class="sidebar-header">-->
+  <!---->
+          <!--<div class="search-container">-->
+             <!--<div style="position:relative"><div style="position:absolute; left:2px; top:3px">-->
+                <!--<i class="fa fa-search"></i></div></div>-->
+              <!---->
+              <!--<input  class="form-control " type="text" [(ngModel)]="term" >-->
+              <!--&lt;!&ndash; <button type="submit"><i class="fa fa-search"></i></button> &ndash;&gt;-->
+          <!--</div>-->
+  <!---->
+        <!--</div>-->
+        <!--<div class="chat-sidebar-body">-->
+          <!--<ng-container *ngFor = "let user of mainChat | filter:term | orderBy: order"  >-->
+          <!--<div   *ngIf="user.name" [ngStyle]="{'background-color':otherUser == user.uid ? '#ffecf0' : 'white' }" (click)="singleUser(user.uid)" class="chat-person" class="chat-person">-->
+            <!--&lt;!&ndash; <div class="chat-img"><img src="../../assets/img/man01.png" class=" img-responsive img-circle" alt="User"> </div> &ndash;&gt;-->
+            <!--<div class="chat-msg-img chat-alphabet">{{user.name | slice:0:1 | uppercase}}</div>-->
+  <!---->
+            <!--<div -->
+          <!---->
+             <!--class="name-and-msg">-->
+              <!--<h5>{{user.name}}</h5>-->
+              <!--&lt;!&ndash; <p>Some Messege will  be here</p> &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div *ngIf="user.unreadCount >= 1" (click)="singleUser()" class="time-and-star pull-right">-->
+              <!--<p>-->
+  <!---->
+                <!--<i class="fa fa-envelope"></i>-->
+                <!--({{user.unreadCount}})-->
+              <!--</p>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</ng-container>-->
+  <!---->
+  <!---->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col-md-8 chat-box-body">-->
+       <!--<div *ngIf="otherUser" class="chat-box-header">-->
+         <!--<i *ngIf="status == 'Online' "class="fa fa-circle"></i>-->
+         <!--<h4>{{reciever.name}}</h4>-->
+         <!--<ul>-->
+           <!--<li>{{this.status }}</li>-->
+           <!--&lt;!&ndash; <li>Local time May 16, 7:10AM</li> &ndash;&gt;-->
+         <!--</ul>-->
+       <!--</div>-->
+  <!---->
+        <!--<div class="messages chat-body-msgs messagebox"  #scrollMe [scrollTop]="scrollMe.scrollHeight">-->
+          <!--<div *ngIf="!otherUser" class="no-convo-select">-->
+            <!--<i class="fa fa-comments"></i>-->
+            <!--<h2>No Conversations Selected</h2>-->
+            <!--<p>Try selecting  a conversation or searching<br> for somone specific</p>-->
+          <!--</div>-->
+          <!--<ng-container  *ngFor="let item of oneChat"  >-->
+          <!--<ul>-->
+          <!--<ul>-->
+            <!--<li class="sent" *ngIf="currentUser == item.senderUid && otherUser">-->
+              <!--<div class="chat-msg-img chat-alphabet" style="font-size: 15px;">Me</div>-->
+              <!--<div style="float: right">-->
+                <!--<p>{{item.message}}</p><br>-->
+              <!--&lt;!&ndash; <span>{{item.timestamp  | date:'yyyy-MM-dd HH:mm a' | timeAgo}}</span> &ndash;&gt;-->
+              <!--<span>{{item.timestamp   | timeAgo}}</span>-->
+              <!---->
+              <!--</div>-->
+            <!--</li>-->
+            <!--<li class="replies"  *ngIf="currentUser != item.senderUid">-->
+              <!--<div class="chat-msg-img chat-alphabet" style="font-size: 15px;">{{reciever.name | slice:0:2 }}</div>-->
+              <!--<div style="line-height: 22px">-->
+              <!--<span class="receiver">{{reciever.name}}</span><br>-->
+              <!--<p>{{item.message}}-->
+  <!---->
+              <!--</p><br>-->
+              <!--<span>{{item.timestamp | timeAgo}}</span>-->
+              <!--</div>-->
+            <!--</li>-->
+          <!--</ul>-->
+          <!--</ng-container>-->
+        <!--</div>-->
+  <!---->
+  <!---->
+      <!---->
+        <!--<form *ngIf="otherUser" class="send-form-style"  #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>-->
+          <!--<div class="form-group"> &lt;!&ndash; Email field !&ndash;&gt;-->
+          <!--<input type="text"  class="form-control input-lg"  name="chat" [(ngModel)] = "chat"  autocomplete="nope"          placeholder="Type your Messege" required>-->
+          <!--</div>-->
+          <!--<div class="send-icons">-->
+  <!---->
+          <!--<div class="form-group" style="display: inline"> &lt;!&ndash; Submit button !&ndash;&gt;-->
+          <!--<button type="submit" class="btn pull-right">Send-->
+          <!--<i class="fa fa-send"></i>-->
+          <!--</button>-->
+          <!--</div>-->
+          <!--</div>-->
+  <!---->
+          <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+

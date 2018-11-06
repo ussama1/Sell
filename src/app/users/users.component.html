@@ -1,0 +1,101 @@
+
+<div id="content-block"style="margin-top:0px;margin-bottom:0px">
+
+<!--Breadcrumbs-->
+<div class="s_keywords" style="margin-bottom:20px;">
+<div class="container-fluid custom-container">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink='/' style="color:#777;font-size:16px !important"><i class="fa fa-home"></i> Home</a>
+        </li>
+        <li class="breadcrumb-item active">Users
+        </li>
+
+      </ol>
+</div>
+</div>
+<!--end-->
+
+
+<!-- (click) = singleuser(userinfo,userkey[ind]) -->
+<!-- Spinner -->
+<div *ngIf="showSpinner" class="app-preloader" >
+        <app-loading-spinner ></app-loading-spinner>
+    </div>
+<div class="container-fluid custom-container">
+<div class="row">
+<div class="col-md-10 col-md-push-2">
+<div id="container-mix" class="be-user-wrapper row">
+<div *ngFor="let userinfo of users | async; let ind=index" class="mix category-1 custom-column-5 animated fadeIn"  style="display:block;" >
+<!-- <div *ngIf="user_id != userkey[ind]"> -->
+<div class="be-user-block style-2" >
+<a class="be-ava-user style-2" >
+<img style="border-radius:100%;" src="{{userinfo.image}}"  onError="this.src='assets/img/Blank-Photo.jpg';"  alt="...">
+</a>
+<div class="be-user-counter">
+<div  *ngIf="userinfo.totalratings >= 1; else rate"class="c_number">{{userinfo.totalratings}}</div>
+<ng-template #rate><div class="c_number">0</div></ng-template>
+<div class="c_text" style="color:#fff;">Ratings</div>
+</div>
+<a class="be-use-name">{{userinfo.name}}</a>
+<!-- <p class="be-user-info">{{userinfo.email}}</p> -->
+<div class="be-text-tags">
+  <div class="star-rating">
+      <span *ngIf="userinfo.averagerating >= 1; else template1" class="fa fa-star" data-rating="1"></span>
+      <ng-template #template1><span class="fa fa-star-o" data-rating="1"></span></ng-template>
+      <span *ngIf="userinfo.averagerating >= 2; else template2" class="fa fa-star" data-rating="2"></span>
+      <ng-template #template2><span class="fa fa-star-o" data-rating="2"></span></ng-template>
+      <span *ngIf="userinfo.averagerating >= 3; else template3" class="fa fa-star" data-rating="3"></span>
+      <ng-template #template3><span class="fa fa-star-o" data-rating="3"></span></ng-template>
+      <span *ngIf="userinfo.averagerating >= 4; else template4" class="fa fa-star" data-rating="4"></span>
+      <ng-template #template4><span class="fa fa-star-o" data-rating="4"></span></ng-template>
+      <span *ngIf="userinfo.averagerating >= 5; else template5" class="fa fa-star" data-rating="5"></span>
+      <ng-template #template5><span class="fa fa-star-o" data-rating="5"></span></ng-template>
+
+  </div>
+
+</div>
+
+
+<!-- <div *ngIf="show_detail; else follow_block"> -->
+    <div>
+<a class="btn color-1 size-2 hover-1" (click) = singleuser(userinfo,userkey[ind]) >View</a>
+</div>
+<!-- <ng-template #follow_block>
+    <div *ngIf="users_follow[userkey[ind]]; else followonly">
+        <a class="btn2 btn color-1 size-2 hover-1" (click)="followers_insertion_deletion(userkey[ind])">{{  users_follow[userkey[ind]] ? 'Followed':'Follow' }}</a>
+    </div>
+    <ng-template #followonly>
+        <a class="btn color-1 size-2 hover-1" (click)="followers_insertion_deletion(userkey[ind])">{{  users_follow[userkey[ind]] ? 'Followed':'Follow' }}</a>
+    </ng-template>
+</ng-template> -->
+
+</div>
+</div>
+<div *ngIf="!showSpinner" class="text-center loadmore-holder" style="font-size:20px">
+        <button class="btn btn-next load-more load-more-btn" infiniteScroll
+                [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="1000"
+                (click)="onScroll()">
+          <i style="margin-right: 0px !important;" class="fa fa-plus"></i>
+        </button><br>
+        SHOW MORE
+      </div>
+      <div *ngIf="!finished">
+      <!-- Loading more movies... -->
+      </div>
+      <div *ngIf="finished">
+      <!-- End of database... That's all folks! -->
+      </div>
+</div>
+</div>
+
+<div class="col-md-2 col-md-pull-10 left-feild">
+
+<div class="be-vidget">
+    <app-sidebar *ngIf="showSpinner == false"></app-sidebar>
+</div>
+</div>
+
+</div>
+</div>
+</div>

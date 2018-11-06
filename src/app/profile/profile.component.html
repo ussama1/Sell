@@ -1,0 +1,343 @@
+
+<div id="content-block" style="margin-top:50px;">
+  <div class="container be-detail-container">
+    <div class="row">
+      <div class="col-xs-12 col-md-4 left-feild">
+        <div class="be-user-block style-3">
+          <div *ngIf="(user | async)?.uid" class="be-user-detail">
+            <img style="cursor:text" class="profile-image img-circle" src="{{prof_dict.image}}" alt onError="this.src='assets/img/Blank-Photo.jpg';" alt="..." >
+            <p class="be-use-name"style="font-size:28px;color:#fff">{{prof_dict.name}}</p>
+            <p class="edit-details"data-toggle="modal" data-target="#editDetail"> <i class="fa fa-edit"></i> Edit details</p>
+            <p class="edit-details" (click)="changePhoto()"> <i class="fa fa-photo" style="padding-right: 10px"></i>Change Photo</p>
+
+          </div>
+          <div class="detail-info">
+            <h2>Ratings</h2>
+            <div class="profile-ratting">
+              <div class="star-rating">
+                <span *ngIf="prof_dict.averagerating >= 1; else template1" class="fa fa-star" data-rating="1"></span>
+                <ng-template #template1><span class="far fa-star" data-rating="1"></span></ng-template>
+                <span *ngIf="prof_dict.averagerating >= 2; else template2" class="fa fa-star" data-rating="2"></span>
+                <ng-template #template2><span class="far fa-star" data-rating="2"></span></ng-template>
+                <span *ngIf="prof_dict.averagerating >= 3; else template3" class="fa fa-star" data-rating="3"></span>
+                <ng-template #template3><span class="far fa-star" data-rating="3"></span></ng-template>
+                <span *ngIf="prof_dict.averagerating >= 4; else template4" class="fa fa-star" data-rating="4"></span>
+                <ng-template #template4><span class="far fa-star" data-rating="4"></span></ng-template>
+                <span *ngIf="prof_dict.averagerating >= 5; else template5" class="fa fa-star" data-rating="5"></span>
+                <ng-template #template5><span class="far fa-star" data-rating="5"></span></ng-template>
+
+              </div>
+            </div>
+            <p>(Total ratings - {{prof_dict.totalratings}})</p>
+
+          </div>
+          <div class="detail-info ">
+            <h2>Detail Info</h2>
+            <h5>Email</h5>
+            <span>{{prof_dict.email}}</span>
+            <h5>Zip Code</h5>
+            <span>{{prof_dict.zipCode}}</span>
+            <h5>State / Location</h5>
+            <span>{{prof_dict.state}}</span>
+
+          </div>
+          <div class="detail-info">
+            <h2>Send Email Notifications for:</h2>
+
+            <div class="form-group trigger">
+              <label class="switch label-sell">
+                <input type="checkbox" [checked]="config.buyingActivities === 'on'" (change)="changeBuyingStatus($event)">
+                <span class="slider round"></span>
+                Buying Activites
+              </label>
+            </div>
+            <div class="form-group trigger">
+              <label class="switch label-sell">
+                <input type="checkbox"  [checked]="config.sellingActivities === 'on'"  (change)="changeSellingStatus($event)">
+                <span class="slider round"></span>
+                Selling Activites
+              </label>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="col-xs-12 col-md-8">
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#home" style="color:#000">Selling</a></li>
+          <li ><a data-toggle="tab" href="#menu1" style="color:#000">Bought & Wins</a></li>
+          <li><a data-toggle="tab" href="#menu2" style="color:#000">Buying & Bids</a></li>
+          <li><a data-toggle="tab" href="#menu3" style="color:#000">Watching</a></li>
+          <li><a data-toggle="tab" href="#menu4" style="color:#000">Followers</a></li>
+          <li><a data-toggle="tab" href="#menu5" style="color:#000">Following</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="home" class="tab-pane fade in active">
+
+            <div class="row" style="margin-top:20px;">
+              <div *ngIf="prodinfo.length == 0" class="col-md-12" style="text-align:center">
+                <img src="assets/img/no-products-found.jpg" alt="">
+              </div>
+              <ng-container *ngFor="let sell of prodinfo;let ind=index">
+                <div *ngIf="sell.image0 && sellcat[ind] "    class="col-md-4 col-xs-6 col-sm-4">
+
+                  <div class="be-post" (click) = singleproduct(sell.title,sellcat[ind],sellauction[ind],sellstate[ind],sellingkey[ind],profileid)>
+                    <a class="be-img-block">
+                      <img src="{{sell.image0}}"  alt="...">
+                    </a>
+                    <a class="be-post-title" style="font-weight:bold; width:8em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"> {{sell.title}}</a><span style="float:right; color:#e74c3c; font-weight:bold; width:8em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${{sell.startPrice}}</span>
+                    <span style="padding-bottom: 10px">
+            <a class="be-post-tag"> {{sell.description}}</a>
+            </span>
+
+                  </div>
+                </div>
+              </ng-container>
+              <div  *ngIf="prodinfo.length == 0"class="col-md-12 no-product-found">
+                <div>
+                  <img src="../../assets/img/no_product.png" alt="no product">
+                </div>
+                <h2>Items you list for sale, appear here.</h2>
+              </div>
+
+
+            </div>
+          </div>
+          <div id="menu1" class="tab-pane fade">
+
+            <div class="row" style="margin-top:20px;">
+              <div *ngIf="boughtinfo.length == 0" class="col-md-12" style="text-align:center">
+                <img src="assets/img/no-products-found.jpg" alt="">
+              </div>
+              <ng-container *ngFor="let bought of boughtinfo;let bgh=index" >
+                <div *ngIf="bought.image0" (click) = singleproduct(bought.title,boughtcat[bgh],boughtauction[bgh],boughtstate[bgh],boughtkey[bgh],profileid) class="col-ml-12 col-xs-6 col-sm-4">
+                  <div  class="be-post">
+                    <a class="be-img-block">
+                      <img src="{{bought.image0}}" alt="...">
+                    </a>
+                    <a class="be-post-title" style="font-weight:bold; width:8em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"> {{bought.title}}</a><span style="float:right; color:#e74c3c; font-weight:bold; width:8em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${{bought.startPrice}}</span>
+                    <span>
+            <a class="be-post-tag"> {{bought.description}}</a>
+            </span>
+
+                  </div>
+                  <!-- <div class="clearfix" *ngIf="(bgh + 1) % 3 == 0"></div> -->
+
+                </div>
+              </ng-container>
+              <div  *ngIf="boughtinfo.length == 0"class="col-md-12 no-product-found">
+                <div>
+                  <img src="../../assets/img/no_product.png" alt="no product">
+                </div>
+                <h2>Items you are currently in the process of buying and you have bid on, appear here.</h2>
+
+              </div>
+            </div>
+
+
+          </div>
+          <div id="menu2" class="tab-pane fade">
+            <div class="row" style="margin-top:20px;">
+              <div *ngIf="buyinginfo.length == 0" class="col-md-12" style="text-align:center">
+                <img src="assets/img/no-products-found.jpg" alt="">
+              </div>
+              <ng-container *ngFor="let buying of buyinginfo;let buy=index">
+
+                <div *ngIf="buying.image0"   (click) = singleproduct(buying.title,buyingcat[buy],buyingauction[buy],buyingstate[buy],buyingkey[buy],profileid) class="col-ml-12 col-xs-6 col-sm-4">
+                  <div class="be-post">
+                    <a class="be-img-block">
+                      <img src="{{buying.image0}}"  alt="...">
+                    </a>
+                    <a class="be-post-title" style="font-weight:bold; width:8em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"> {{buying.title}}</a><span style="float:right; color:#e74c3c; font-weight:bold; width:8em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${{buying.startPrice}}</span>
+                    <span>
+            <a class="be-post-tag"> {{buying.description}}</a>
+            </span>
+
+                  </div>
+                  <!-- <div class="clearfix" *ngIf="(buy + 1) % 3 == 0"></div>     -->
+                </div>
+              </ng-container>
+              <div  *ngIf="buyinginfo.length == 0"class="col-md-12 no-product-found">
+                <div>
+                  <img src="../../assets/img/no_product.png" alt="no product">
+                </div>
+                <h2>Items you are currently in the process of buying and you have bid on, appear here.</h2>
+
+              </div>
+            </div>
+
+
+
+          </div>
+          <div id="menu3" class="tab-pane fade">
+            <div class="row" style="margin-top:20px;">
+              <!-- <div *ngIf="watchinginfo.length == 0" class="col-md-12" style="text-align:center">
+              <img src="assets/img/no-products-found.jpg" alt="">
+              </div> -->
+              <ng-container *ngFor="let watching of watchinginfo;let wat=index">
+                <div *ngIf="watching.image0" (click) = singleproduct(watching.title,watchingcat[wat],watchingauction[wat],watchingstate[wat],watchingkey[wat],profileid) class="col-ml-12 col-xs-6 col-sm-4">
+                  <div  class="be-post">
+                    <a class="be-img-block">
+                      <img src="{{watching.image0}}" alt="...">
+                    </a>
+                    <a class="be-post-title" style="font-weight:bold; width:8em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"> {{watching.title}}</a><span style="float:right; color:#e74c3c; font-weight:bold; width:8em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${{watching.startPrice}}</span>
+                    <span>
+            <a class="be-post-tag"> {{watching.description}}</a>
+            </span>
+
+                  </div>
+                  <!-- <div class="clearfix" *ngIf="(wat + 1) % 3 == 0"></div>         -->
+                </div>
+              </ng-container>
+              <div  *ngIf="watchinginfo.length == 0"class="col-md-12 no-product-found">
+                <div>
+                  <img src="../../assets/img/no_bids.png" alt="no product">
+                </div>
+                <h2>No Result Found..</h2>
+
+              </div>
+            </div>
+          </div>
+
+          <div id="menu4" class="tab-pane fade">
+            <div class="row" style="margin-top:20px;">
+              <div  *ngIf="followeruser.length == 0" class="col-md-12 no-product-found">
+                <div>
+                  <img src="../../assets/img/no_bids.png" alt="No Follower">
+                </div>
+                <h2>People, who follow you, appear here.</h2>
+              </div>
+              <div *ngFor="let userinfo of followeruser; let fl=index" class="mix category-3 custom-column-5" style="display:block;width:260px;clear:none;" >
+                <div class="be-user-block style-2" (click) = singleuser(userinfo,followerinfo[fl]) >
+                  <a class="be-ava-user style-2" style="cursor:pointer;" >
+                    <img style="border-radius:100%;" src="{{userinfo.image}}" onError="this.src='assets/img/Blank-Photo.jpg';" alt="...">
+                  </a>
+                  <div class="be-user-counter">
+                    <div *ngIf="userinfo.totalratings >= 1; else rate"class="c_number">{{userinfo.totalratings}}</div>
+                    <ng-template #rate><div class="c_number">0</div></ng-template>
+                    <div class="c_text" style="color:#fff;">Ratings</div>
+                  </div>
+                  <a class="be-use-name">{{userinfo.name}}</a>
+                  <!-- <p class="be-user-info">{{userinfo.email}}</p> -->
+                  <div class="be-text-tags">
+                    <div class="star-rating">
+                      <span *ngIf="userinfo.averagerating >= 1; else template1" class="fa fa-star" data-rating="1"></span>
+                      <ng-template #template1><span class="far fa-star" data-rating="1"></span></ng-template>
+                      <span *ngIf="userinfo.averagerating >= 2; else template2" class="fa fa-star" data-rating="2"></span>
+                      <ng-template #template2><span class="far fa-star" data-rating="2"></span></ng-template>
+                      <span *ngIf="userinfo.averagerating >= 3; else template3" class="fa fa-star" data-rating="3"></span>
+                      <ng-template #template3><span class="far fa-star" data-rating="3"></span></ng-template>
+                      <span *ngIf="userinfo.averagerating >= 4; else template4" class="fa fa-star" data-rating="4"></span>
+                      <ng-template #template4><span class="far fa-star" data-rating="4"></span></ng-template>
+                      <span *ngIf="userinfo.averagerating >= 5; else template5" class="fa fa-star" data-rating="5"></span>
+                      <ng-template #template5><span class="far fa-star" data-rating="5"></span></ng-template>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+          <div id="menu5" class="tab-pane fade">
+            <div class="row" style="margin-top:20px;">
+              <div  *ngIf="followinguser.length == 0" class="col-md-12 no-product-found">
+                <div>
+                  <img src="../../assets/img/no_bids.png" alt="No Following">
+                </div>
+                <h2>People, you follow , appear here.</h2>
+              </div>
+
+              <div *ngFor="let fuserinfo of followinguser; let fg=index" class="mix category-3 custom-column-5" style="display:block;width:260px;clear:none;" >
+                <div class="be-user-block style-2" (click) = singleuser(fuserinfo,followinginfo[fg]) >
+                  <a class="be-ava-user style-2" style="cursor:pointer;" >
+                    <img style="border-radius:100%;" src="{{fuserinfo.image}}" onError="this.src='assets/img/Blank-Photo.jpg';" alt="...">
+                  </a>
+                  <div class="be-user-counter">
+                    <div *ngIf="fuserinfo.totalratings >= 1; else frate"class="c_number">{{fuserinfo.totalratings}}</div>
+                    <ng-template #frate><div class="c_number">0</div></ng-template>
+                    <div class="c_text" style="color:#fff;">Ratings</div>
+                  </div>
+                  <a class="be-use-name">{{fuserinfo.name}}</a>
+                  <!-- <p class="be-user-info">{{fuserinfo.email}}</p> -->
+                  <div class="be-text-tags">
+                    <div class="star-rating">
+                      <span *ngIf="fuserinfo.averagerating >= 1; else ftemplate1" class="fa fa-star" data-rating="1"></span>
+                      <ng-template #ftemplate1><span class="far fa-star" data-rating="1"></span></ng-template>
+                      <span *ngIf="fuserinfo.averagerating >= 2; else ftemplate2" class="fa fa-star" data-rating="2"></span>
+                      <ng-template #ftemplate2><span class="far fa-star" data-rating="2"></span></ng-template>
+                      <span *ngIf="fuserinfo.averagerating >= 3; else ftemplate3" class="fa fa-star" data-rating="3"></span>
+                      <ng-template #ftemplate3><span class="far fa-star" data-rating="3"></span></ng-template>
+                      <span *ngIf="fuserinfo.averagerating >= 4; else ftemplate4" class="fa fa-star" data-rating="4"></span>
+                      <ng-template #ftemplate4><span class="far fa-star" data-rating="4"></span></ng-template>
+                      <span *ngIf="fuserinfo.averagerating >= 5; else ftemplate5" class="fa fa-star" data-rating="5"></span>
+                      <ng-template #ftemplate5><span class="far fa-star" data-rating="5"></span></ng-template>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Counter  offer Modal -->
+<div class="modal fade" id="editDetail" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Profile</h4>
+      </div>
+      <div class="modal-body ">
+        <form  class="form"  #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+          <div style="margin-bottom:20px;" class="form-group">
+            <label style="float:left" for="Price">Full Name</label>
+            <input type="text" class="form-control" [(ngModel)]="model.name"   name="name" required>
+            <!-- <span class="pull-left help-block" *ngIf="name.touched && name.errors">
+              <span style="color: #bd081c" *ngIf="name.errors.required"> *Full name is required</span>
+            </span> -->
+          </div>
+          <div style="margin:20px 0px;" class="form-group">
+            <label style="float:left" for="Price">Zip Code</label>
+            <input type="text" class="form-control" [(ngModel)]="model.zipCode"
+                   name="zipCode" required>
+            <!-- <span class="pull-left help-block" *ngIf="zipCode.touched && zipCode.errors">
+                <span style="color: #bd081c" *ngIf="zipCode.errors.required"> *Zip Code is required</span>
+            </span> -->
+            <p style="color:#e74c3c">* City and State will be updated from Zip Code</p>
+          </div>
+          <div class="form-group">
+            <button  type="submit" class="btn btn-next pull-left">Update</button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

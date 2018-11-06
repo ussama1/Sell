@@ -1,0 +1,12 @@
+/*.product-wrapper{*/
+    /*width: 260px !important;*/
+/*}*/
+.load-more-btn {
+    background: #0a0a0a!important;
+    padding: 0!important;
+    margin: 0;
+    width: 70px;
+    height: 70px!important;
+    border-radius: 50%;
+    min-width: auto
+}

@@ -1,0 +1,65 @@
+<div class="login-back">
+  <div class="img-1 img">
+    <img src="../../assets/img/img-p-1.png" alt="" />
+  </div>
+  <div class="img-2 img">
+    <img src="../../assets/img/img-p-2.png" alt="" />
+  </div>
+  <div class="img-3 img">
+    <img src="../../assets/img/img-p-3.png" alt="" />
+  </div>
+</div>
+<div class="form-holder">
+  <div class="form-outer">
+    <header>
+      <span>
+        <img src="../../assets/img/sell4bids_logo.png" alt="Sell 4 Bids" />
+      </span>
+      <h3>Welcome to Sell4Bids</h3>
+      <!-- <p>Find new ideas to try!</p> -->
+    </header>
+    <form class="form-sample">
+        <div class="form-group">
+            <input type="text" class="form-control" name="name"  [(ngModel)]="model.name" #name=ngModel   placeholder="Enter Your User name*" required />
+            <span class="pull-left help-block" *ngIf="name.touched && name.errors">
+              <span style="color: #bd081c" *ngIf="name.errors.required"> *Name is required</span>
+              </span>
+          </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="email"  [(ngModel)]="model.email" #email=ngModel  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Enter Your Email*" required />
+        <span class="pull-left help-block" *ngIf="email.touched && email.errors">
+          <span style="color: #bd081c" *ngIf="email.errors.required"> *Email is required</span>
+          <span style="color: #bd081c" *ngIf="email.errors.pattern"> *Email is invalid</span>
+          </span>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control"[(ngModel)]="model.password"
+        #password=ngModel  placeholder="Enter Your Password*" required />
+
+          <span class="pull-left help-block" *ngIf="password.touched && password.errors">
+            <span style="color: #bd081c" *ngIf="password.errors.required"> *Password is required</span>
+            </span>
+      </div>
+     
+      <!-- <div style="width:100%;"  class="g-recaptcha">
+        <re-captcha (resolved)="resolved($event)" siteKey="6LfsRDIUAAAAACiv609X_7y1iwMmwE4tA-YqRZLg
+          " style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></re-captcha>
+      </div> -->
+     
+      <div style="margin: 20px 0 10px 0px;">
+        <button type="submit" class="btn btn-primary full" style="background:#bd081c"  (click)="register()" [disabled]=" name.errors || email.errors || password.errors ">Submit</button>
+        <a routerLink='/login' class="already-register-link" >Already Registered ? Login Here</a>
+        <!-- <button type="submit" class="btn btn-primary full" style="background:#bd081c"  (click)="login()" [disabled]="email.errors || password.errors ">Continue</button> -->
+
+      </div>
+      <div class="ballon">
+        <div>
+          <p>Sell4Bids is the Auction Universe.</p>
+          <button class="btn" routerLink='/how-it-works'>How it works</button>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+</div>
+<!--<app-categories></app-categories>-->

@@ -1,0 +1,1024 @@
+<div id="content-block" style="margin-top:50px; margin-bottom:0px;">
+  <div class="container-fluid be-detail-container sh-mg-top-90">
+
+    <div class="row">
+      <div class="col-md-7 col-sm-12 ">
+        <div class="be-large-post" style="padding-bottom: 15px;">
+          <div class="blog-content   be-large-post-align" style="margin-bottom: 0px;">
+            <div class="clear"></div>
+            <div class="post-text">
+              <div class="col-md-12">
+                <!-- <div ng2-carouselamos class="slides-wrapper" [items]="product_arr" [width]="1000" [$item]="item">
+                </div> -->
+                <div class="sh-sold-tag" *ngIf="product.quantity == 0">
+                  <img src="../../assets/img/soldout.png" alt="Sold out">
+                </div>
+                <div class="sh-price-tag">
+                  <p>{{product.startPrice}}</p>
+                </div>
+                <!-- <div class="sh-views-tag">
+                  <p>10
+                    <i class="far fa-eye"></i>
+                  </p>
+                </div> -->
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="col-md-12"></ngx-gallery>
+
+              </div>
+              <div class="col-md-12">
+
+                <div class="info-block ">
+                  <h5 class="be-post-title ">{{product.title}}</h5>
+                  <p>
+                    <i class="fas fa-tags"></i> {{catname}}</p>
+                  <p>
+                    <i class="fa fa-calendar" aria-hidden="true"></i> Posted {{ product.startTime | timeAgo}}</p>
+                </div>
+                <div *ngIf="days == 0 && hours == 0 && minutes == 0 && seconds == 0" class="h1 sh-listing-end ">
+                  <div *ngIf="catname == 'Jobs'">
+                    Listing Ended
+                  </div>
+                  <div *ngIf="catname != 'Jobs'">
+                    Auction Ended
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center; padding: 0px;" *ngIf="product.quantity != 0">
+                  <div id="clockdiv" *ngIf="days != 0 || hours != 0 || minutes != 0 || seconds != 0 ">
+                    <div>
+                      <span class="days hr-line">
+                        {{days}}
+                      </span>
+                      <div class="smalltext">Day</div>
+                    </div>
+                    <div>
+                      <span class="hours hr-line">{{hours}}
+                      </span>
+                      <div class="smalltext">Hr</div>
+                    </div>
+                    <div>
+                      <span class="minutes hr-line">{{minutes}}
+                      </span>
+                      <div class="smalltext">Min</div>
+                    </div>
+                    <div>
+                      <span class="seconds hr-line">{{seconds}}
+                      </span>
+                      <div class="smalltext">Sec</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <p *ngIf="product.description" class="sh-item-dt-description">
+                  <span style="color:#000;    font-weight: bolder;font-size: 18px;">Description :</span>
+                  <br>{{product.description}}</p>
+              </div>
+
+              <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
+                <h5 *ngIf="product.condition && !product.companyName" class="be-post-title to sh-item-detail">Condition :
+                  <span style="color:#e74c3c">{{product.condition}}</span>
+                </h5>
+                <h5 *ngIf="product.quantity && product.quantity == 0 && !product.companyName " class="be-post-title to sh-item-detail">
+                  <span style="color:#e74c3c">Item out of Stock</span>
+                </h5>
+                <h5 *ngIf="product.quantity && product.quantity != 0 && !product.companyName " class="be-post-title to sh-item-detail">Quantity in stock :
+                  <span style="color:#e74c3c">{{product.quantity}} item(s)</span>
+                </h5>
+                <h5 *ngIf="product.quantity && product.companyName" class="be-post-title to sh-item-detail">Total Positions:
+                  <span style="color:#e74c3c">{{product.quantity}}</span>
+                </h5>
+                <h5 *ngIf="product.city" class="be-post-title to sh-item-detail">Location :
+                  <span style="color:#e74c3c">{{product.city}}</span>
+                </h5>
+                <!--JOb -->
+                <h5 *ngIf="product.companyName" class="be-post-title to sh-item-detail">Company :
+                  <span style="color:#e74c3c">{{product.companyName}}</span>
+                </h5>
+                <h5 *ngIf="product.companyDescription" class="be-post-title to sh-item-detail">Company Description :
+                  <span style="color:#e74c3c">{{product.companyDescription}}</span>
+                </h5>
+                <h5 *ngIf="product.benefits" class="be-post-title to sh-item-detail">Benefits :
+                  <span style="color:#e74c3c">{{product.benefits}}</span>
+                </h5>
+                <h5 *ngIf="product.employmentType" class="be-post-title to sh-item-detail">Employment Type :
+                  <span style="color:#e74c3c">{{product.employmentType}}</span>
+                </h5>
+                <h5 *ngIf="product.payPeriod" class="be-post-title to sh-item-detail">Pay Period :
+                  <span style="color:#e74c3c">{{product.payPeriod}}</span>
+                </h5>
+                <h5 *ngIf="product.companyName && product.condition" class="be-post-title to sh-item-detail">Job Toughness :
+                  <span style="color:#e74c3c">{{product.condition}}</span>
+                </h5>
+
+                <!--end-->
+
+              </div>
+
+
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 map-padding">
+                <iframe width="100%" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=5050%20Quorum%20Drive%20Suite%20700%20Dallas%2C%20TX%2075254&key=AIzaSyBcVkwSRC2BW9c3FsFmhM61fM1c3goI9_4"
+                        allowfullscreen></iframe>
+                <p class="text-info text-center">Location is approximate in order to protect Seller Privacy</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="be-large-post-align">
+
+            <div class="tags_block clearfix">
+              <div style="width: 100%; ">
+                <h4 *ngIf="seller_latitude && seller_longitude" style="text-align:center;margin:5px 0px; color:#000;">{{local_str}}</h4>
+
+                <agm-map *ngIf="seller_latitude && seller_longitude" [zoom]='19' [latitude]="seller_latitude" [longitude]="seller_longitude">
+                  <agm-marker [latitude]="seller_latitude" [longitude]="seller_longitude"> </agm-marker>
+                </agm-map>
+                <h4 *ngIf="seller_latitude && seller_longitude" style="text-align:center;margin:5px 0px; color:#ccc;">Seller shared location to meet.</h4>
+
+                <agm-map *ngIf="latitude && longitude" [latitude]="latitude" [longitude]="longitude">
+                  <agm-marker [latitude]="latitude" [longitude]="longitude"> </agm-marker>
+                </agm-map>
+                <h4></h4>
+                <h4 *ngIf="latitude && longitude" style="text-align:center;margin:5px 0px; color:#ccc;">Location is approximate in order to protect seller privacy.</h4>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <h3 style="margin:0px 20px 20px 20px;"><span style="font-weight:bolder;">Seller's other items</span></h3>
+          </div>
+
+        </div> -->
+
+
+
+        <!-- <div class="row">
+          <ng-container  *ngFor="let sel of prodinfo ;let ind=index">
+            <div *ngIf="sel.image0 && sellingkey[ind] != pid " (click) = mainFunction(catRecord[ind],auctionRecord[ind],stateRecord[ind],sellingkey[ind]) class="col-md-4" style="margin-bottom:20px" >
+             <div  class="be-post col-item">
+                    <div class="photo be-post" style="margin-bottom:0px !important;">
+                      <a style="cursor:pointer" class="be-img-block">
+                      <img src="{{sel.image0}}" alt="..." class="img-responsive" style="height:200px;" alt="a" />
+                      </a>
+                    </div>
+                    <div class="info">
+                      <div class="row">
+                        <div class="price">
+
+                            <a class="be-post-title" style="font-weight:bold; white-space: nowrap;overflow: hidden;text-overflow: ellipsis; text-align: center">
+                          {{sel.title}}
+                          </a>
+                         <div class="col-md-12">
+                          <div class="item-btn">
+                            <div style="text-align: center">
+                              <span style="color:#e74c3c; font-size: 20px; font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${{sel.startPrice}}</span>
+                            </div>
+                            <div style="text-align: center">
+                              <button *ngIf="auctionRecord[ind]=='buy-it-now'  && catRecord[ind] =='Jobs'" class="btn btn-next" >Apply Now</button>
+                              <button *ngIf="auctionRecord[ind]=='buy-it-now'  && catRecord[ind] !='Jobs'" class="btn btn-next" >Buy Now</button>
+                            <button *ngIf="auctionRecord[ind]=='reserve' || auctionRecord[ind]=='non-reserve'" class="btn btn-alert" >Bid Now</button>
+                            </div>
+                    </div>
+                    <div class="clearfix"></div>
+                        </div>
+                        </div>
+
+                      </div>
+
+
+
+                </div>
+              </div>
+              <div class="clearfix" *ngIf="(ind + 1) % 2 == 0"></div>
+
+            </div>
+            </ng-container>
+        </div> -->
+
+        <!-- View Offer Section-->
+        <!-- Modal -->
+        <div id="myModal2" class="modal fade" role="dialog">
+          <div class="modal-dialog offers-custom-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+
+              <section *ngIf="currentUser == product.uid " id="viewoffer">
+                <h2>Offers</h2>
+                <div class="row">
+
+                  <div class="col-md-12">
+                    <table class="table table-responsive table-striped table-hover">
+                      <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Rating / Actions</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+
+                      <ng-container *ngFor="let offer of viewoffer ; let ind = index">
+
+                        <tr>
+                          <td>
+                            {{offer.name}}
+                            <!-- <br>
+<button  class="btn btn-next btn-lg" >Accept</button> -->
+
+                          </td>
+                          <td>
+                            {{offer.boughtPrice}} x {{offer.boughtQuantity}}
+                            <!-- <br>
+<button  class="btn btn-next btn-lg" >Reject</button> -->
+
+                          </td>
+                          <td>
+
+                            <!-- <rating *ngIf="offer.rating && offer.rating == 0" [(ngModel)]="starsCount" [id]="[offer.uid]"
+             [titles]="['one', 'two', 'three', 'four', 'five']">
+           </rating> -->
+                            <!-- <rating *ngIf="offer.rating && offer.rating > 0"  [(ngModel)]="starsCount"  [value]="3"
+
+           [disabled]="true">
+           </rating> -->
+                            <star-rating-comp *ngIf="offer.rating && offer.rating > 0" [starType]="'icon'" [disabled]="true" [rating]="offer.rating"></star-rating-comp>
+                            <star-rating-comp *ngIf="offer.rating && offer.rating == 0" [starType]="'icon'" [id]="[offer.uid]" (onRatingChange)="onRatingChange($event,offer.uid)"></star-rating-comp>
+                            <h4 *ngIf="offer.rating && !offer.address">Location not shared yet.</h4>
+                            <button (click)="shareLocation(offer.uid)" *ngIf="offer.rating && !offer.address " data-toggle="modal" data-target="#location"
+                                    class="btn btn-next btn-lg">Share Location</button>
+                            <button (click)="accept(offer.uid,offer.boughtQuantity,offer.boughtPrice)" *ngIf="!offer.rating" class="btn btn-next btn-lg">Accept</button>
+                            <button (click)="reject(offer.uid)" *ngIf="!offer.rating" class="btn btn-next btn-lg">Reject</button>
+                            <button (click)=" sellcountid(offer.uid)" *ngIf="!offer.rating" class="btn btn-next btn-lg" data-toggle="modal" data-target="#counteroffer">Send Counter Offer</button>
+                            <h4 *ngIf="offer.address">{{offer.address}}</h4>
+                            <button (click)="updateLocation(offer.uid,offer.latitude,offer.longitude)" *ngIf="offer.rating && offer.address " data-toggle="modal"
+                                    data-target="#location" class="btn btn-next btn-lg">Update Location</button>
+                            <button *ngIf="offer.seller_marked_paid == 'no' " (click)="markPaid(offer.uid)" class="btn btn-next btn-lg">Mark Paid</button>
+                            <!-- <button *ngIf="offer.seller_marked_paid == 'yes' " class="btn btn-next btn-lg">Un-Mark Paid</button> -->
+
+                            <p class="u-marked" *ngIf="offer.seller_marked_paid == 'yes' " (click)="unmarkPaid(offer.uid)">
+                              <i class="fa fa-check-circle-o"></i>You marked this as paid.</p>
+                            <!-- <button  (click) ="rating(offer.uid)"*ngIf ="offer.rating == 0" class="btn btn-next btn-lg" >Rate</button> -->
+                            <!-- Modal -->
+
+                          </td>
+
+                        </tr>
+                      </ng-container>
+
+
+                      </tbody>
+                    </table>
+                    <div *ngIf="viewoffer.length == 0" class="col-md-12 no-product-found">
+                      <div>
+                        <img src="../../assets/img/no_bids.png" alt="no product">
+                      </div>
+                      <h2>No orders received.</h2>
+
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <br />
+
+            </div>
+
+          </div>
+        </div>
+        <div id="location" class="modal fade" role="dialog">
+          <div class="modal-dialog offers-custom-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <agm-map style="height:500px" [zoom]='19' [latitude]="lat" [longitude]="lng" (mapClick)="placeMarker($event)">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map>
+              <div class="modal-footer">
+                <button (click)="sellerLocation()" class="btn btn-next btn-lg">Share Location</button>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- End -->
+
+        <!-- Modal -->
+        <div id="myModal3" class="modal fade" role="dialog">
+          <div class="modal-dialog offers-custom-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <section *ngIf="bid" id="history">
+                <h2>Bid History</h2>
+                <div class="row">
+                  <div class="col-md-12 bid-history-details">
+                    <div class="col-md-6 sh-bg-bid">
+                      <h2>Name</h2>
+                    </div>
+                    <div class="col-md-6 sh-bg-bid">
+                      <h2>Bid</h2>
+                    </div>
+
+                    <ng-container *ngFor="let userbid of prod_bid ; let ind = index">
+
+                      <div *ngIf=" userbid.uid == bid_user.winner  " class="col-md-12 high-bid" style="background:#ffecf0">
+                        <h4 *ngIf="finaltime > 0">Highest Bidder</h4>
+                        <h4 *ngIf="finaltime < 0">Winner</h4>
+
+                        <hr style="border:1px solid #c7c7c7">
+
+                        <div class="col-md-6 sh-pd-0">
+                          <p *ngIf="currentUser == userbid.uid " class="bid-name" style="color:#da1b22">
+                            <b>You</b>
+                          </p>
+                          <p *ngIf="currentUser == product.uid " class="bid-name ">
+                            <b> {{userbid.name}}</b>
+                          </p>
+                          <p *ngIf="currentUser != userbid.uid && currentUser != product.uid " class="bid-name ">
+                            <b> {{ (userbid.name.length>2)? (userbid.name | slice:0:2)+'****':(userbid.name) }}</b>
+                          </p>
+
+                          <P *ngIf="currentUser == userbid.uid && userbid.uid == bid_user.winner ">Ceiling amount</P>
+                          <button *ngIf="currentUser == product.uid && finaltime < 0 && !userbid.address" (click)="shareLocation(userbid.uid)" data-toggle="modal"
+                                  data-target="#bidSellerlocation" class="btn btn-next btn-lg">Share Location</button>
+                          <p *ngIf="currentUser == product.uid && finaltime < 0 && userbid.address ">{{userbid.address}}</p>
+                          <button *ngIf="currentUser == product.uid && finaltime < 0 && userbid.address" (click)="updateLocation(userbid.uid,userbid.latitude,userbid.longitude)"
+                                  data-toggle="modal" data-target="#bidSellerlocation" class="btn btn-next btn-lg">Update Location</button>
+
+                        </div>
+
+                        <div class="col-md-6 sh-pd-0">
+                          <p *ngIf="currentUser != product.uid && userbid.bid > bid_user.startPrice " class="bid-name">
+                            <b>${{bid_user.startPrice}}</b>
+                          </p>
+                          <p *ngIf="currentUser == product.uid  && userbid.bid > bid_user.startPrice " class="bid-name">
+                            <b>${{bid_user.startPrice}}</b>
+                          </p>
+                          <p *ngIf="currentUser == userbid.uid  && userbid.uid == bid_user.winner ">${{userbid.bid}}</p>
+                        </div>
+
+                      </div>
+
+
+                      <div *ngIf=" userbid.uid != bid_user.winner  " class="col-md-12 low-bid">
+                        <p *ngIf="currentUser != userbid.uid && currentUser != product.uid " class="pull-left bid-name ">
+                          <b> {{ (userbid.name.length>2)? (userbid.name | slice:0:2)+'****':(userbid.name) }}</b>
+                        </p>
+                        <p *ngIf="currentUser == userbid.uid " class="pull-left bid-name " style="color:#da1b22">
+                          <b> You</b>
+                        </p>
+                        <p *ngIf="currentUser == product.uid " class="pull-left bid-name ">
+                          <b> {{userbid.name}}</b>
+                        </p>
+
+                        <p *ngIf="userbid.bid < bid_user.startPrice " class="pull-right bid-name">
+                          <b>${{userbid.bid}}</b>
+                        </p>
+
+                      </div>
+                    </ng-container>
+                    <div *ngIf="prod_bid.length == 0" class="col-md-12 no-product-found">
+                      <div>
+                        <img src="../../assets/img/no_bids.png" alt="no product">
+                      </div>
+                      <h2>No bids received.</h2>
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </section>
+              <br />
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-sm-12 left-feild">
+        <div class="be-user-block">
+          <div class="be-user-detail">
+            <a class="be-ava-user" (click)=singleperson(prof_dict,userkey)>
+              <img style="border-radius: 100%;cursor:pointer;" src="{{prof_dict.image}}" alt onError="this.src='assets/img/Blank-Photo.jpg';"
+                alt="...">
+            </a>
+            <div class="display-inline-b" *ngIf="prof_dict.name==null">
+              <span class="be-use-name" style="margin-bottom: 0px;">Seller Not Available</span>
+            </div>
+            <div class="display-inline-b" *ngIf="prof_dict.name!=null">
+              <span class="be-use-name" style="margin-bottom: 0px;">{{prof_dict.name}}</span>
+            </div>
+
+
+            <div class="be-text-tags">
+              <div class="star-rating">
+                <span *ngIf="prof_dict.averagerating >= 1; else template1" class="fa fa-star" data-rating="1"></span>
+                <ng-template #template1>
+                  <span class="far fa-star" data-rating="1"></span>
+                </ng-template>
+                <span *ngIf="prof_dict.averagerating >= 2; else template2" class="fa fa-star" data-rating="2"></span>
+                <ng-template #template2>
+                  <span class="far fa-star" data-rating="2"></span>
+                </ng-template>
+                <span *ngIf="prof_dict.averagerating >= 3; else template3" class="fa fa-star" data-rating="3"></span>
+                <ng-template #template3>
+                  <span class="far fa-star" data-rating="3"></span>
+                </ng-template>
+                <span *ngIf="prof_dict.averagerating >= 4; else template4" class="fa fa-star" data-rating="4"></span>
+                <ng-template #template4>
+                  <span class="far fa-star" data-rating="4"></span>
+                </ng-template>
+                <span *ngIf="prof_dict.averagerating >= 5; else template5" class="fa fa-star" data-rating="5"></span>
+                <ng-template #template5>
+                  <span class="far fa-star" data-rating="5"></span>
+                </ng-template>
+                <div *ngIf="prof_dict.averagerating == null">
+                  <b>(Not rated yet)</b>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="currentUser != product.uid " class="product-btns">
+              <button *ngIf="currentUser && (catname != 'Jobs')" class="btn btn-next btn-lg" data-toggle="modal" data-target="#SweetModal">
+                <i class="fas fa-comments"></i>Chat With Seller</button>
+              <button *ngIf="currentUser && (catname == 'Jobs')" class="btn btn-next btn-lg" data-toggle="modal" data-target="#SweetModal">
+                <i class="fas fa-comments"></i>Chat With Employer</button>
+              <button *ngIf="!currentUser && (catname != 'Jobs')" data-toggle="modal" data-target="#SweetModal" class="btn btn-next btn-lg">
+                <i class="fas fa-comments"></i> Chat With Seller</button>
+              <button *ngIf="!currentUser && (catname == 'Jobs')" data-toggle="modal" data-target="#SweetModal" class="btn btn-next btn-lg">
+                <i class="fas fa-comments"></i> Chat With Employer</button>
+
+
+
+              <button *ngIf="currentUser && (bid && catname != 'Jobs')" class="btn btn-next btn-lg" data-toggle="" data-target="" data-toggle="modal" data-target="#SweetModal">
+                <img class="sh-bid-img" src="../../assets/img/Sell4Bids-Logo.png"> Bid </button>
+              <button *ngIf="!currentUser && (bid && catname != 'Jobs')" class="btn btn-next btn-lg" data-toggle="modal" data-target="#SweetModal">
+                <img class="sh-bid-img" src="../../assets/img/Sell4Bids-Logo.png"> Bid</button>
+
+              <button *ngIf="currentUser && (offer && catname != 'Jobs')" class="btn btn-next btn-lg" data-toggle="" data-target=""
+                [disabled]="seller_location.uid == currentUser" [ngStyle]="{'background-color':seller_location.uid == currentUser ? '#bbb' : '#c00' }" data-toggle="modal" data-target="#SweetModal">
+                <i class="fas fa-shopping-basket"></i>Buy Now</button>
+              <button *ngIf="currentUser && (offerbid && catname != 'Jobs')" class="btn btn-next btn-lg" data-toggle="" data-target=""
+                [disabled]="seller_location.uid == currentUser" [ngStyle]="{'background-color':seller_location.uid == currentUser ? '#bbb' : '#c00' }" data-toggle="modal" data-target="#SweetModal">Offer Now</button>
+              <button *ngIf="!currentUser && (offer && catname != 'Jobs')" class="btn btn-previous btn-lg" data-toggle="modal" data-target="#SweetModal">
+                <i class="fas fa-shopping-basket"></i>Buy Now</button>
+              <button *ngIf="!currentUser && (offerbid && catname != 'Jobs')" class="btn btn-previous btn-lg" data-toggle="modal" data-target="#SweetModal">Offer Now</button>
+              <button *ngIf="currentUser && watch" class="btn btn-next btn-lg" data-toggle="modal" data-target="#SweetModal">Add to My Watch List</button>
+              <button style="font-size: 13px;" *ngIf="currentUser && !watch" class="btn btn-next btn-lg" (click)="removeWatchlist()">Remove from My Watch List</button>
+
+              <button *ngIf="currentUser && (catname == 'Jobs' && bootmodel)" class="btn btn-next btn-lg" data-toggle="modal" data-target="#SweetModal">Apply Now</button>
+              <button *ngIf="currentUser && (catname == 'Jobs')" data-toggle="modal" data-target="#SweetModal" class="btn btn-next btn-lg" data-toggle="" data-target="">Job Now</button>
+              <button *ngIf="!currentUser && (catname == 'Jobs' && bootmodel)"data-toggle="modal" data-target="#SweetModal" class="btn btn-next btn-lg">Apply Now</button>
+              <button *ngIf="!currentUser && (catname == 'Jobs')" data-toggle="modal" data-target="#SweetModal" class="btn btn-next btn-lg">Job Now</button>
+
+              <button *ngIf="currentUser && bid" class="btn btn-next btn-lg" data-toggle="" data-target="">Bid History</button>
+              <!-- <button *ngIf="bid" class="btn btn-next btn-lg" onclick="smoothScroll(document.getElementById('history'))">Bid History</button>               -->
+              <button *ngIf="currentUser && currentUser == counterofferkey.b_id " class="btn btn-next btn-lg" data-toggle="" data-target=""
+                      data-toggle="modal" data-target="#SweetModal">View Current Offer</button>
+
+
+              <div class="profile-ratting own-profile">
+
+                <div *ngIf="seller_location.rating" class="star-rating">
+                  <h2 *ngIf="markrating.rating && markrating.rating == 0">Rate your experience </h2>
+                  <h2 *ngIf="markrating.rating && markrating.rating > 0">You Rated This</h2>
+                  <star-rating-comp *ngIf="markrating.rating && markrating.rating > 0" [starType]="'icon'" [disabled]="true" [rating]="markrating.rating"></star-rating-comp>
+                  <star-rating-comp *ngIf="markrating.rating && markrating.rating == 0" [starType]="'icon'" (onRatingChange)="buyerStar($event)"></star-rating-comp>
+                  <button *ngIf="markrating.rating && markrating.rating == 0" class="btn btn-next btn-lg" (click)="buyerRating(currentUser,prof_dict.uid)">Rate</button>
+
+                </div>
+                <button *ngIf="markrating.rating && seller_location.rating && (!seller_location.buyer_marked_paid || seller_location.buyer_marked_paid == 'no' ) "
+                  (click)="buyerPaid(currentUser)" class="btn btn-next btn-lg">Mark Paid</button>
+                <p *ngIf="markrating.rating && seller_location.rating && seller_location.buyer_marked_paid == 'yes'" class="u-marked" (click)="buyerUnPaid(currentUser)">
+                  <i class="fa fa-check-circle-o"></i>You marked this as paid.</p>
+              </div>
+
+
+            </div>
+
+            <div *ngIf="currentUser == product.uid " class="product-btns">
+              <button *ngIf="offer && currentUser && relistTime && catname != 'Jobs'" class="btn btn-next btn-lg" data-toggle="modal" data-target="#endlisting">End Listing </button>
+              <button *ngIf="offer && currentUser " class="btn btn-next btn-lg" data-toggle="modal" data-target="#myModal2">View Offer</button>
+              <!-- <button class="btn btn-next btn-lg" data-toggle="modal" data-target="#myModal2" onclick="smoothScroll(document.getElementById('viewoffer'))">View Offer</button> -->
+              <button *ngIf="!stop && offerbid && catname != 'Jobs'" class="btn btn-next btn-lg" (click)="sellerAcceptoffers()">Accept Offers </button>
+              <button *ngIf="currentUser && stop && offerbid && catname != 'Jobs'" class="btn btn-next btn-lg" (click)="stopoffers()">Stop Accepting Offers </button>
+              <button *ngIf="offer && currentUser &&!stop_orders  && catname != 'Jobs'" class="btn btn-next btn-lg" (click)="stoporders()">Stop New Orders </button>
+              <button *ngIf="offer && currentUser && stop_orders  && catname != 'Jobs'" class="btn btn-next btn-lg" (click)="getorders()">Get New Orders </button>
+              <button *ngIf="offer && currentUser" class="btn btn-next btn-lg" data-toggle="modal" data-target="#stockQuantity">Set Stock Quantity</button>
+              <button *ngIf="offer &&currentUser && !Hideitem  && catname != 'Jobs'" class="btn btn-next btn-lg" (click)="hideitem()">Hide Item </button>
+              <button *ngIf="offer && currentUser && Hideitem  && catname != 'Jobs'" class="btn btn-next btn-lg" (click)="showitem()">Show Item </button>
+              <button *ngIf="offer && currentUser && !relistTime && catname != 'Jobs'" class="btn btn-next btn-lg" data-toggle="modal"
+                data-target="#relist">Re-list Item</button>
+              <button *ngIf="currentUser && bid" class="btn btn-next btn-lg" data-toggle="modal" data-target="#myModal3">Bid History</button>
+
+
+            </div>
+
+            <div class="product-btns sh-product-btns ">
+
+              <button class="btn btn-black btn-lg" data-toggle="modal" data-target="">
+                <i class="fa fa-flag" aria-hidden="true"></i>
+                Report </button>
+              <button class="btn btn-success btn-lg" data-toggle="modal" data-target="">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+                Share </button>
+            </div>
+
+          </div>
+        </div>
+        <!--Chat box Start-->
+        <!-- <ng-container >
+        <div class="main-section">
+          <div class="row border-chat">
+            <div class="col-md-12 col-sm-12 col-xs-12 first-section">
+              <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-6 left-first-section">
+                  <p>{{prof_dict.name}}</p>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-6 right-first-section">
+                  <a ><i class="fa fa-minus" aria-hidden="true"></i></a>
+                  <a href="#"><i class="fa fa-clone" aria-hidden="true"></i></a>
+                  <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row border-chat">
+            <div class="col-md-12 col-sm-12 col-xs-12 second-section">
+              <div class="chat-section">
+                <ul *ngFor="let item of chat_list">
+                  <li *ngIf="item.receiverUid">
+                    <div *ngIf="currentUser == item.receiverUid" class="left-chat">
+                      <img src="../../assets/img/Blank-Photo.jpg">
+                      <p>{{item.message}}</p>
+                      <span>{{item.receiver}} {{item.timestamp | date}}</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div *ngIf="currentUser == item.senderUid" class="right-chat">
+                      <img src="../../assets/img/Blank-Photo.jpg">
+                      <p>{{item.message}}</p>
+                      <span>{{item.sender}} hvbb {{item.timestamp | date}}</span>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row border-chat">
+            <div class="col-md-12 col-sm-12 col-xs-12 third-section">
+              <div class="text-bar">
+                <input type="text" placeholder="Write messege"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>   -->
+        <!--Chat Box End-->
+        <div class="apps">
+          <a class="display-inline-b" href="https://play.google.com/store/apps/details?id=com.usman.brainplow.sell4bids&hl=en" target="_blank">
+            <img src="assets/img/googleplayx233.png">
+          </a>
+        </div>
+        <div class="apps">
+          <a class="display-inline-b" href="https://itunes.apple.com/us/app/sell4bids/id1304176306?mt=8" target="_blank">
+            <img src="assets/img/appstorex233.png">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<!-- Buy Model-->
+<!--<div class="modal fade" id="buynow" role="dialog">-->
+  <!--<div class="modal-dialog">-->
+
+    <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+        <!--<h4 class="modal-title">Buy Now</h4>-->
+      <!--</div>-->
+      <!--<div class="modal-body text-center">-->
+        <!--<div *ngIf="!bootmodel" class="alert alert-info">-->
+          <!--<h2>-->
+            <!--<b>Please login first</b>-->
+          <!--</h2>-->
+        <!--</div>-->
+        <!--<form *ngIf="bootmodel" class="form" #f="ngForm" (ngSubmit)="buynow(f)" novalidate>-->
+          <!--<div style="margin-bottom:20px;" class="form-group">-->
+            <!--<label style="float:left" for="Price">Quantity to buy</label>-->
+            <!--<input type="number" class="form-control" [(ngModel)]="model.quantity" id="quantity" placeholder="Quantity" name="quantity"-->
+              <!--required>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<button type="submit" class="btn btn-next pull-left">Send Offer</button>-->
+          <!--</div>-->
+          <!--<div class="clearfix"></div>-->
+
+        <!--</form>-->
+
+      <!--</div>-->
+
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!-- Modal -->
+<div class="modal fade" id="bidding" role="dialog">
+  <div class="modal-dialog sh-modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Biding</h4>
+      </div>
+      <div class="modal-body text-center">
+        <div *ngIf="!bootmodel" class="alert alert-info">
+          <h2>
+            <b>Please login first</b>
+          </h2>
+        </div>
+        <form *ngIf="bootmodel" class="form" #b="ngForm" (ngSubmit)="bidding(b)" novalidate>
+          <div style="margin-bottom:20px;" class="form-group">
+            <label style="float:left" for="Price">Bids amount must be greater than $ {{product.startPrice}}</label>
+            <input type="number" class="form-control" [(ngModel)]="model.price" name="price" id="price" placeholder="Bid amount" required>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-next pull-left">Place bid</button>
+          </div>
+          <div class="clearfix"></div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- Offer Bid Model -->
+<div class="modal fade" id="offerbid" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Send Offer</h4>
+      </div>
+      <div class="modal-body text-center">
+        <div *ngIf="!bootmodel" class="alert alert-info">
+          <h2>
+            <b>Please login first</b>
+          </h2>
+        </div>
+        <form *ngIf="bootmodel" class="form" #sf="ngForm" (ngSubmit)="offersbid(sf)" novalidate>
+          <div style="margin-bottom:20px;" class="form-group">
+            <label style="float:left" for="Price">Offer amount per item</label>
+            <input type="number" class="form-control" [(ngModel)]="model.price" name="price" id="price" placeholder="$" required>
+          </div>
+          <div style="margin:20px 0px;" class="form-group">
+            <label style="float:left" for="Price">Quantity to buy</label>
+            <input type="number" class="form-control" [(ngModel)]="model.quantity" name="quantity" id="quantity" placeholder="Quantity"
+              required>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-next pull-left">Send Offer</button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+        <!--</div>-->
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Bid seller location -->
+<div id="bidSellerlocation" class="modal fade" role="dialog">
+  <div class="modal-dialog offers-custom-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <agm-map style="height:500px" [zoom]='19' [latitude]="lat" [longitude]="lng" (mapClick)="placeMarker($event)">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
+      <div class="modal-footer">
+        <button (click)="bidSellerLocation()" class="btn btn-next btn-lg">Share Location</button>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- End -->
+
+<!-- Job Offer Model-->
+<div class="modal fade" id="joboffer" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Expected Salary</h4>
+      </div>
+      <div class="modal-body text-center">
+        <div *ngIf="!bootmodel" class="alert alert-info">
+          <h2>
+            <b>Please login first</b>
+          </h2>
+        </div>
+        <form *ngIf="bootmodel" class="form">
+          <div style="margin-bottom:20px;" class="form-group">
+            <label style="float:left" for="Price">Expected Weekly salary</label>
+            <input type="number" class="form-control" [(ngModel)]="model.salary" #salary=ngModel id="salary" placeholder="$" name="salary">
+          </div>
+          <div class="form-group">
+            <button type="submit" (click)="joboffer()" class="btn btn-next pull-left">Send Offer</button>
+          </div>
+          <div class="clearfix"></div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Counter  offer Modal -->
+<div class="modal fade" id="counteroffer" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Counter Offer Send</h4>
+      </div>
+      <div class="modal-body text-center">
+        <!-- <div *ngIf="!bootmodel" class="alert alert-info">
+        <h2><b>Please login first</b></h2>
+      </div> -->
+        <form *ngIf="bootmodel" class="form">
+          <div style="margin-bottom:20px;" class="form-group">
+            <label style="float:left" for="Price">Offer amount per item</label>
+            <input type="text" class="form-control" [(ngModel)]="model.price" #price=ngModel id="price" placeholder="$" name="price">
+          </div>
+          <div style="margin:20px 0px;" class="form-group">
+            <label style="float:left" for="Price">Quantity to buy</label>
+            <input type="text" class="form-control" [(ngModel)]="model.quantity" #quantity=ngModel id="quantity" placeholder="Quantity"
+              name="quantity">
+          </div>
+          <div class="form-group">
+            <button (click)="sellerCounteroffer()" type="submit" class="btn btn-next pull-left">Send Offer</button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+        <!--</div>-->
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Counter  offer Modal -->
+<div class="modal fade" id="buyerCounter" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Counter Offer </h4>
+      </div>
+      <div class="modal-body ">
+        <h4>
+          You recieved counter offer for {{product.title}}. Seller is ready to sell {{counteroffer.quantity}} item(s) at ${{counteroffer.pricePerItem}}
+          per item.
+        </h4>
+        <button class="btn btn-next btn-lg" (click)="buyerAccept(currentUser,counteroffer.quantity,counteroffer.pricePerItem)">Accept</button>
+        <button class="btn btn-next btn-lg" (click)="buyerReject(currentUser)">Reject</button>
+        <button class="btn btn-next btn-lg" (click)="buyercountid(currentUser)" data-toggle="modal" data-target="#buyerCounteroffer"
+          data-dismiss="modal">Send Counter Offer</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Counter  offer Modal -->
+<div class="modal fade" id="buyerCounteroffer" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Counter Offer Send</h4>
+      </div>
+      <div class="modal-body text-center">
+        <!-- <div *ngIf="!bootmodel" class="alert alert-info">
+        <h2><b>Please login first</b></h2>
+      </div> -->
+        <form *ngIf="bootmodel" class="form">
+          <div style="margin-bottom:20px;" class="form-group">
+            <label style="float:left" for="Price">Offer amount per item</label>
+            <input type="text" class="form-control" [(ngModel)]="model.price" #price=ngModel id="price" placeholder="$" name="price">
+          </div>
+          <div style="margin:20px 0px;" class="form-group">
+            <label style="float:left" for="Price">Quantity to buy</label>
+            <input type="text" class="form-control" [(ngModel)]="model.quantity" #quantity=ngModel id="quantity" placeholder="Quantity"
+              name="quantity">
+          </div>
+          <div class="form-group">
+            <button (click)="buyerCounteroffer()" type="submit" class="btn btn-next pull-left">Send Offer</button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+        <!--</div>-->
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Stock Quantity Modal -->
+<div class="modal fade" id="stockQuantity" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Stock Quantity</h4>
+      </div>
+      <div class="modal-body text-center">
+        <!-- <div *ngIf="!bootmodel" class="alert alert-info">
+        <h2><b>Please login first</b></h2>
+      </div> -->
+        <form *ngIf="bootmodel" class="form">
+
+          <div style="margin:20px 0px;" class="form-group">
+            <label style="float:left" for="Price">Quantity in stock</label>
+            <input type="text" class="form-control" [(ngModel)]="model.quantity" #quantity=ngModel id="quantity" placeholder="Quantity"
+              name="quantity">
+          </div>
+          <div class="form-group">
+            <button (click)="stockQuantity()" type="submit" class="btn btn-next pull-left">Set Quantity</button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+        <!--</div>-->
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Stock Quantity Modal -->
+<div class="modal fade" id="endlisting" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Why you want to end item listing?</h4>
+      </div>
+      <div class="modal-body">
+        <!-- <div *ngIf="!bootmodel" class="alert alert-info">
+        <h2><b>Please login first</b></h2>
+      </div> -->
+        <form *ngIf="bootmodel" class="form">
+          <div class="form-group">
+            <!-- <label class="label-sell">
+        </label> -->
+            <!-- <br> -->
+            <ng-container *ngFor="let list of list_item; let i= index;">
+              <label>
+                <!-- <input  [(ngModel)]="model.item" #item ="ngModel" type="radio" class="option-input radio" value="list.value" name="{{i}}" /> -->
+                <input type="radio" name="radiogroup" [checked]="i === 0" [value]="list.value" class="option-input radio" (change)="listItemChange(list.value , i )"
+                /> {{list.viewValue}}
+
+              </label>
+              <br>
+            </ng-container>
+          </div>
+          <div class="form-group">
+            <button type="submit" (click)="endlisting()" class="btn btn-next pull-left">End Listing</button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+        <!--</div>-->
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Counter  offer Modal -->
+<div class="modal fade" id="relist" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Re-list Item</h4>
+      </div>
+      <div class="modal-body text-center">
+        <!-- <div *ngIf="!bootmodel" class="alert alert-info">
+        <h2><b>Please login first</b></h2>
+      </div> -->
+        <form *ngIf="bootmodel" class="form">
+          <div style="margin-bottom:20px;" class="form-group">
+            <label style="float:left" for="Price">Price</label>
+            <input type="text" class="form-control" [(ngModel)]="model.price" #price=ngModel id="price" placeholder="$" name="price">
+          </div>
+          <div style="margin:20px 0px;" class="form-group">
+            <label style="float:left" for="Price">Duration</label>
+            <select [(ngModel)]="model.listingTime" #listingTime="ngModel" name="listingTime" class="f1-last-name form-control" id="listingTime">
+              <option value="259200000">3 Days</option>
+              <option value="432000000">5 Days</option>
+              <option value="604800000">7 Days</option>
+              <option value="1296000000">15 Days</option>
+              <option value="1814400000">21 Days</option>
+              <option value="2592000000">30 Days</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button (click)="reListItem()" type="submit" class="btn btn-next pull-left">Re-List Item</button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+        <!--</div>-->
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="modal fade" id="SweetModal" role="dialog">
+  <div class="modal-dialog" style="margin-top: 120px;">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header sweet-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body sweet-modal-body text-center modal-height">
+        <div class="for-text">
+          <h2 class="modal-title">Download The Free Sell4Bids App</h2>
+          <p>Fast, Easy, Cool. Sell4Bids brings the Online Auction Experience to you like NEVER BEFORE!</p>
+          <a class="display-inline-b play-store-responsive" href="https://play.google.com/store/apps/details?id=com.usman.brainplow.sell4bids&hl=en" target="_blank" >
+            <img src="../../assets/img/google-play.png">
+          </a>
+          <a class="display-inline-b play-store-responsive" href="https://itunes.apple.com/us/app/sell4bids/id1304176306?mt=8" target="_blank" >
+            <img src="../../assets/img/apple-store.png">
+          </a>
+        </div>
+        <div class="image-sec">
+          <img src="../../assets/img/modal-image.png">
+        </div>
+
+      </div>
+      <!--<div class="modal-footer">-->
+      <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>

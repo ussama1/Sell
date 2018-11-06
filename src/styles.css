@@ -1,0 +1,96 @@
+.nav-tabs>li>a{
+  border: none;
+}
+.nav-tabs>li>a:hover{
+  border: none;
+}
+.nav-tabs{
+  border: none;
+}
+.privacy-item-nav-circle a{
+  overflow-wrap: break-word;
+  text-align: center;
+  display: block;
+  padding-top: 40%;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 22px;
+}
+.privacy-item li{
+  margin: 0px 5px;
+  background-color: #ddd7d3;
+  border-radius: 50%;
+  height: 210px;
+  cursor: pointer;
+  width: 210px;
+  transition: background-color 0.125s ease;
+}
+.privacy-item li:nth-child(1):hover{
+  background: #004b91;
+}
+.privacy-item li:nth-child(2):hover{
+  background-color: #fab904;
+}
+.privacy-item li:nth-child(3):hover{
+  background-color: #ff8080;
+}
+.privacy-item li:nth-child(4):hover{
+  background-color: #0084ff;
+}
+.privacy-item li:nth-child(5):hover{
+  background-color: #364a4c;
+}
+.privacy-item li:nth-child(6):hover{
+  background-color: #d7b4f5;
+}
+.privacy-item li:nth-child(7):hover{
+  background-color: #555555;
+}
+.star-icon[_ngcontent-c10] {
+  /* color: #ddd; */
+  /* font-size: 2em; */
+  position: relative;
+}
+.tab-content h1{
+  font-weight: 700;
+  font-stretch: normal;
+  letter-spacing: 3px;
+  font-size: 70px;
+  margin: 50px 0px;
+}
+#Terms h1{
+  color: #004b91;
+}
+#Privacy h1{
+  color: #fab904;
+}
+#Community h1{
+  color: #ff8080;
+}
+#Advertising h1{
+  color: #0084ff;
+}
+#Developers h1{
+  color: #364a4c;
+}#Copyright h1{
+   color: #d7b4f5;
+ }
+#Trademark h1{
+  color: #555555;
+}
+h1.terms-title {
+  text-align: center;
+  margin: 50px 0px;
+  font-size: 80px !important;
+  font-weight: 700;
+  font-size: 22px;
+}
+.nav>li>a:focus, .nav>li>a:hover{
+  background: none;
+}
+.tab-content p{text-align: justify;padding: 20px 0px;font-size: 20px;}
+.footer-block.footer-categories a {
+  display: block;
+  width: 100%;
+  text-align: left;
+}

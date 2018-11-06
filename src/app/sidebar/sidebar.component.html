@@ -1,0 +1,34 @@
+
+
+
+<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left"  id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+  <div class="be-vidget">
+
+    <div class="creative_filds_block">
+
+      <div class="sidebar-title"><i class="fa fa-th"></i> Browse </div>
+      <div class="ul sh-sidebar-img" *ngIf = "loaded">
+        <a *ngFor="let item of cat" (click)=loadprodut(item) title="{{item}}" class="filter" style="font-weight:bolder;"><img src="assets/img/cat-icons/{{item}}.png">{{ item }} </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="w3-main" style="margin-left:200px">-->
+<!--<div class="w3-teal">-->
+
+<!--<div class="w3-container">-->
+<!--<h1>My Page</h1>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="w3-container">-->
+<!--<h3>Responsive Sidebar</h3>-->
+<!--<p>The sidebar in this example will always be displayed on screens wider than 992px, and hidden on tablets or mobile phones (screens less than 993px wide).</p>-->
+<!--<p>On tablets and mobile phones the sidebar is replaced with a menu icon to open the sidebar.</p>-->
+<!--<p>The sidebar will overlay of the page content.</p>-->
+<!--<p><b>Resize the browser window to see how it works.</b></p>-->
+<!--</div>-->
+
+<!--</div>-->

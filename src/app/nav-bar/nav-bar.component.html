@@ -1,0 +1,141 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="menu-bar-main">
+    <div id="mySidenav" class="sidenav">
+      <div class="user-box">
+        <div class="user-img">
+          <a href="#">
+            <img src="../../assets/img/Blank-Photo.jpg">
+          </a>
+        </div>
+        <a href="#">User Name</a>
+      </div>
+
+      <span href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</span>
+
+      <a href="/" class="active"><img src="../../assets/img/android-Icons/Home@16px.png">Home</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/Sell%20Now@16px.png">Sell Now</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/Search%20Categories@16px.png">Search Categories</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/Search%20Filters@16px.png">Search Filters</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal" ><img src="../../assets/img/android-Icons/My%20Sell4Bids@16px.png">My Sell4Bids</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/Jobs@16px.png">Jobs</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/My%20Chat@16px.png">My Chat</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/My%20Watch%20List@16px.png">My Watch List</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/My%20Profile@16px.png">My Profile</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/Notifications@16px.png">Notifications</a>
+      <p>About Sell4Bids</p>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/My%20Sell4Bids@16px.png">What is Sell4Bids</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/How%20it%20Works@16px.png">How it Works?</a>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/Establish%20Contact@16px.png">Establish Contact</a>
+      <!--<p>Legal</p>-->
+      <!--<a href=""><i class="fas fa-file-contract" (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"></i>Terms & Conditions</a>-->
+      <!--<a href=""><i class="fas fa-shield-alt" (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"></i>Privacy Policy</a>-->
+      <!--<a href=""><i class="fas fa-handshake" (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"></i>Partnership</a>-->
+      <!--<a href=""><i class="far fa-question-circle" (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"></i>FAQs</a>-->
+      <a href=""><img src="../../assets/img/android-Icons/My%20Sell4Bids@16px.png">Invite</a>
+      <p>Settings</p>
+      <a (click)="closeNav()" data-toggle="modal" data-target="#SweetModal"><img src="../../assets/img/android-Icons/Rate%20Sell4Bids@16px.png">Rate Sell4Bids</a>
+      <a href=""><img src="../../assets/img/android-Icons/Logout@16px.png">Logout</a>
+    </div>
+
+    <span class="open-sidenav" (click)="openNav()"><i class="fas fa-bars"></i></span>
+
+    <input type="search" [(ngModel)]="search_text" placeholder="Search Sell4Bids" data-toggle="modal" data-target="#searchModal">
+    <a routerLink="/"><img class="logo" src="../../assets/img/hamer.png"></a>
+    <div class="icons-box">
+      <i class="fas fa-microphone" (click)="triggerMike()"></i>
+      <!--<a href="#"><i class="fas fa-filter"></i></a>-->
+
+      <!--<input *ngIf="showInput"  [(ngModel)]="search_text" class="search-input" autofocus/>-->
+      <!--<div [ngClass]="showInput ? 'indicator' : 'floatingIndicator'">-->
+        <!--<img class="mike" (click)="triggerMike()" src="assets/mike.png">-->
+        <!--<div class="spinner" *ngIf="blink"></div>-->
+      <!--</div>-->
+
+      <a href="#" class="invite-btn" data-toggle="modal" data-target="#myModal">Invite</a>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog" style="margin-top: 120px;">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Download and Experience Our Super Cool Next Generation Mobile Auction & Jobs/Services Mobile App Now.</h4>
+      </div>
+      <div class="modal-body text-center modal-height">
+        <a href="https://www.sell4bids.com/" title="https://www.sell4bids.com/" class="display-inline-b icons-dialog-box"><img class="logo" src="../../assets/img/hamer.png"></a>
+        <a class="display-inline-b play-store-responsive" href="https://play.google.com/store/apps/details?id=com.usman.brainplow.sell4bids&hl=en" target="_blank" >
+          <img style="height:50px;margin:0;" src="../../assets/img/google-play.png">
+        </a>
+        <a class="display-inline-b play-store-responsive" href="https://itunes.apple.com/us/app/sell4bids/id1304176306?mt=8" target="_blank" >
+          <img style="height:50px;margin:0;" src="../../assets/img/apple-store.png">
+        </a>
+        <a class="btn-copy icons-dialog-box" (click)="copyMessage('https://m.sell4bids.com/')" title="click to copy" ><i class="far fa-copy"></i>Copy link</a>
+      </div>
+      <!--<div class="modal-footer">-->
+      <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="searchModal" role="dialog" style="z-index: 9999;">
+  <div class="modal-dialog sh-margin-0">
+    <!-- Modal content-->
+    <div class="modal-content" style="background-color: transparent;">
+      <div class="modal-header" style="background-color: transparent;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <input (keyup.enter)="searchitem(searchprod.value)" #searchprod [(ngModel)]="search_text" placeholder="Search Sell4Bids" class="search-input" autofocus/>
+        <div [ngClass]="showInput ? 'indicator' : 'floatingIndicator'" class="mike-box">
+          <!--<img class="mike" (click)="triggerMike()" src="assets/mike.png">-->
+          <i class="fas fa-microphone" (click)="triggerMike()"></i>
+          <div class="spinner" *ngIf="blink"></div>
+        </div>
+        <ul  class="results" >
+          <div *ngFor="let search of productFilteredList;let ind=index" class="search-result">
+            <li *ngIf="ind < 10"  style="text-align:left;font-size:18px;"  >
+              <a  data-dismiss="modal" (click) = singleproduct(search,search.category,search.auctionType,search.state,search.key,search.uid) style="cursor:pointer" >
+                {{search?.title }}<br />
+              </a>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="SweetModal" role="dialog">
+  <div class="modal-dialog sweet-modal" style="margin-top: 80px;">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header sweet-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body sweet-modal-body text-center">
+        <div class="for-text">
+          <h2 class="modal-title">Download The Free Sell4Bids App</h2>
+          <p>Fast, Easy, Cool. Sell4Bids brings the Online Auction Experience to you like NEVER BEFORE!</p>
+          <a class="display-inline-b width100-playstore" href="https://play.google.com/store/apps/details?id=com.usman.brainplow.sell4bids&hl=en" target="_blank" >
+            <img src="../../assets/img/google-play.png">
+          </a>
+          <a class="display-inline-b width100-playstore" href="https://itunes.apple.com/us/app/sell4bids/id1304176306?mt=8" target="_blank" >
+            <img src="../../assets/img/apple-store.png">
+          </a>
+        </div>
+        <div class="image-sec">
+          <img src="../../assets/img/modal-image.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

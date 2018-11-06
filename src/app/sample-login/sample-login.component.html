@@ -1,0 +1,84 @@
+
+<div class="login-back">
+  <div class="img-1 img">
+    <img src="../../assets/img/img-p-1.png" alt="" />
+  </div>
+  <div class="img-2 img">
+    <img src="../../assets/img/img-p-2.png" alt="" />
+  </div>
+  <div class="img-3 img">
+    <img src="../../assets/img/img-p-3.png" alt="" />
+  </div>
+</div>
+<div class="form-holder">
+  <div class="form-outer">
+    <header>
+      <span>
+        <img src="../../assets/img/sell4bids_logo.png" alt="Sell 4 Bids" />
+      </span>
+      <h3>Welcome to Sell4Bids</h3>
+      <!-- <p>Find new ideas to try!</p> -->
+    </header>
+    <form class="form-sample">
+      <div class="form-group">
+        <input type="text" class="form-control" name="email"  [(ngModel)]="model.email" #email=ngModel  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Email Your Email*" required />
+        <span class="pull-left help-block" *ngIf="email.touched && email.errors">
+          <span style="color: #bd081c" *ngIf="email.errors.required"> *Email is required</span>
+          <span style="color: #bd081c" *ngIf="email.errors.pattern"> *Email is invalid</span>
+          </span>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control"[(ngModel)]="model.password"
+               #password=ngModel  placeholder="Enter Your Password*" required />
+
+        <span class="pull-left help-block" *ngIf="password.touched && password.errors">
+            <span style="color: #bd081c" *ngIf="password.errors.required"> *Password is required</span>
+            </span>
+      </div>
+      <div class="clearfix"></div>
+      <div class=" form-group">
+        <label class="pull-left">
+          <input  type="checkbox" value="remember-me" checked> Stay Signed In
+        </label>
+      </div>
+      <div style="width:100%;margin-left: -15%">
+        <blackgeeks-recaptcha></blackgeeks-recaptcha>
+        <div class="error-block" *ngIf="isequal==false" style="color: red;font-weight: 600;">
+          <span>*Please Enter Valid Answer</span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="form-group" style="padding: 5px 0px;">
+        <label class="pull-left">
+          <a style="color:#555;cursor:pointer;text-decoration:underline" (click) ="foremail()" >Forgot your password?</a>
+        </label>
+      </div>
+      <div style="margin: 20px 0 10px 0px;">
+        <button type="submit" class="btn btn-primary full" style="background:#bd081c"  (click)="login()" [disabled]="email.errors || password.errors ">Sign in</button>
+        <!-- <button type="submit" class="btn btn-primary full" style="background:#bd081c"  (click)="login()" [disabled]="email.errors || password.errors ">Continue</button> -->
+
+      </div>
+      <div class="ballon">
+        <div>
+          <p>Sell4Bids is the Auction Universe.</p>
+          <button class="btn" routerLink='/how-it-works'>How it works</button>
+        </div>
+      </div>
+    </form>
+    <!--<p class="" style="margin-bottom:3px;overflow:hidden;text-align:center;color:#555;font-weight:bold;" data-reactid="40">OR</p>-->
+    <div class="other-logins">
+      <button (click)="loginFacebook()" class="full btn btn-primary fa">
+        <i class="fab fa-facebook-f"></i>
+        <span>Sign in with Facebook</span>
+      </button>
+      <button  (click)="loginGoogle()" class="full btn btn-primary g">
+        <i class="fab fa-google-plus-g"></i>
+        <span>Sign in with Google</span>
+      </button>
+    </div>
+    <div data-reactid="58"><div style="border-bottom:#dedede 1px solid;margin:10px auto;width:110px;" data-reactid="59"></div><span style="display:inline-block;margin-right:4px;" data-reactid="60">Not on Sell4Bids yet? </span><button routerLink='/signup' class="FullPageSignup__signupToggle" style="border:none;background-color:transparent;font-weight:bold;text-decoration:none;vertical-align:baseline;" data-reactid="61">Sign Up</button><div data-reactid="62"></div></div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<!--<app-categories></app-categories>-->
+<app-footer-simple></app-footer-simple>

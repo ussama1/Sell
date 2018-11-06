@@ -1,0 +1,104 @@
+
+<div id="content-block" style="margin-top:50px;">
+<div class="container be-detail-container">
+<div class="row">
+<div class="col-xs-12 col-md-4 left-feild">
+<div class="be-user-block style-3">
+<div class="be-user-detail">
+<img  class="profile-image img-circle" src="{{prof_dict.image}}" alt onError="this.src='assets/img/Blank-Photo.jpg';" alt="...">
+
+
+<p class="be-use-name" style="font-size:28px;color:#fff; margin-bottom:20px;">{{prof_dict.name}}</p>
+<button *ngIf="currentUser &&  followPerson != 1 " (click) = "follow()"  class="btn btn-next btn-lg" >Follow</button>
+<button *ngIf="currentUser && followPerson == 1" (click) = "unfollow()" class="btn btn-next btn-lg" >Un-Follow</button>
+
+<!-- <div class="be-user-info" style="font-weight:bolder;">
+{{prof_dict.email}}
+</div> -->
+</div>
+<div class="detail-info">
+        <h2>Ratings</h2>
+<div class="profile-ratting">
+<div class="star-rating">
+<span *ngIf="prof_dict.averagerating >= 1; else template1" class="fa fa-star" data-rating="1"></span>
+<ng-template #template1><span class="fa fa-star-o" data-rating="1"></span></ng-template>
+<span *ngIf="prof_dict.averagerating >= 2; else template2" class="fa fa-star" data-rating="2"></span>
+<ng-template #template2><span class="fa fa-star-o" data-rating="2"></span></ng-template>
+<span *ngIf="prof_dict.averagerating >= 3; else template3" class="fa fa-star" data-rating="3"></span>
+<ng-template #template3><span class="fa fa-star-o" data-rating="3"></span></ng-template>
+<span *ngIf="prof_dict.averagerating >= 4; else template4" class="fa fa-star" data-rating="4"></span>
+<ng-template #template4><span class="fa fa-star-o" data-rating="4"></span></ng-template>
+<span *ngIf="prof_dict.averagerating >= 5; else template5" class="fa fa-star" data-rating="5"></span>
+<ng-template #template5><span class="fa fa-star-o" data-rating="5"></span></ng-template>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="col-xs-12 col-md-8">
+
+<div class="tab-wrapper style-1">
+
+<div class="tabs-content clearfix">
+<div class="tab-info active">
+
+
+<div class="row">
+<h3 style="margin:0px 20px 20px 20px;"><span style="font-weight:bolder;">Selling items</span></h3>
+<div *ngIf="prodinfo.length == 0" class="col-md-12" style="text-align:center">
+<img src="assets/img/no-products-found.jpg" alt="">
+</div>
+<ng-container *ngFor="let sell of prodinfo;let ind=index" >
+<div *ngIf="sell.image0 && sell.startPrice" (click) = singleproduct(sell.title,catRecord[ind],auctionRecord[ind],stateRecord[ind],sellingkey[ind],userkey) class="col-md-4 col-xs-6 col-sm-4">
+                <div  class="be-post woo fadeInUp">
+                        <a  style="cursor:pointer"  class="be-img-block">
+                                <img  src="{{sell.image0}}" class="img"   alt="..." >
+                        </a>
+                        <a   class="be-post-title" style="font-weight:bolder;">
+                                {{sell.title}}</a>
+                        <span>
+                                <a  class="be-post-tag"> {{sell.description}}</a>
+                                <!-- <a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,
+                                <a href="blog-detail-2.html" class="be-post-tag">Web Design</a> -->
+                        </span>
+                        <div class="item-btn">
+                                <div class="pull-left">
+                                <button *ngIf="auctionRecord[ind]=='buy-it-now'  && catRecord[ind] =='Jobs'" class="btn btn-next" >Apply Now</button>
+                                <button *ngIf="auctionRecord[ind]=='buy-it-now'  && catRecord[ind] !='Jobs'" class="btn btn-next" >Buy Now</button>
+                                <button *ngIf="auctionRecord[ind]=='reserve' || auctionRecord[ind]=='non-reserve'" class="btn btn-alert" >Bid Now</button>
+                                </div>
+                                <div class="pull-right"> 
+                                <span style="color:#e74c3c; font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${{sell.startPrice}}</span>
+                                </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        
+                        </div>
+    <!-- <div class="clearfix" *ngIf="(ind + 1) % 3 == 0"></div> -->
+
+</div>
+
+</ng-container>
+        <div  *ngIf="prodinfo.length == 0"class="col-md-12 no-product-found">
+                <div>
+                        <img src="../../assets/img/no_product.png"  alt="no product">
+                </div>
+                <h2>No Product found...</h2>
+
+        </div>
+</div>
+        
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

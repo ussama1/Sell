@@ -1,0 +1,14 @@
+.star-rating{line-height:32px;font-size:1.25em}.star-rating .fa-star{color:#e74c3c}h3{overflow:hidden;text-align:center}h3:after,h3:before{background-color:#ddd;content:"";display:inline-block;height:1px;position:relative;vertical-align:middle;width:50%}h3:before{right:.5em;margin-left:-50%}h3:after{left:.5em;margin-right:-50%}agm-map{height:200px}
+
+.be-user-detail button{
+background: #fff;
+color: #cc0000;
+font-weight: 700;
+}
+.be-user-detail button:hover{
+    background-color: #63321a;
+    color: #ffffff;
+    opacity: 1;
+}
+.img {    position: relative;    float: left;    width:  100px;    height: 100px;    background-position: 50% 50%;    background-repeat:   no-repeat;    background-size:     cover;
+}
